@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 import gettext
 import json
@@ -13,8 +13,12 @@ import sys
 
 import apt.cache
 
-from tailslib.additionalsoftware.config import (
+from tailslib import LIVE_USERNAME
+
+from tailslib.additionalsoftware import (
+    ASPDataError,
     add_additional_packages,
+    filter_package_details,
     get_additional_packages,
     get_packages_list_path,
     remove_additional_packages)
@@ -23,11 +27,13 @@ from tailslib.persistence import (
     has_unlocked_persistence,
     has_persistence,
     is_tails_media_writable,
+    launch_persistence_setup,
     PERSISTENCE_DIR)
+
+from tailslib.utils import launch_x_application
 
 _ = gettext.gettext
 
-LIVE_USERNAME = "amnesia"
 ASP_STATE_DIR = "/run/live-additional-software"
 ASP_STATE_PACKAGES = os.path.join(ASP_STATE_DIR, "packages")
 ASP_STATE_INSTALLER_ASKED = os.path.join(ASP_STATE_DIR, "installer-asked")
@@ -35,6 +41,12 @@ ASP_LOG_FILE = os.path.join(ASP_STATE_DIR, "log")
 OLD_APT_LISTS_DIR = os.path.join(PERSISTENCE_DIR, 'apt', 'lists.old')
 APT_ARCHIVES_DIR = "/var/cache/apt/archives"
 APT_LISTS_DIR = "/var/lib/apt/lists"
+
+
+def _exit_if_in_live_build():
+    """Exits with success if running inside live-build."""
+    if "SOURCE_DATE_EPOCH" in os.environ:
+        sys.exit(0)
 
 
 def _launch_apt_get(specific_args):
@@ -63,47 +75,9 @@ def _launch_apt_get(specific_args):
             logging.info(line.rstrip())
     apt_get.wait()
     if apt_get.returncode:
-        logging.warn("apt-get exited with returncode %i" % apt_get.returncode)
+        logging.warning("apt-get exited with returncode %i"
+                        % apt_get.returncode)
     return apt_get.returncode
-
-
-def _launch_x_application(username, command, *args):
-    """Launch an X application and wait for its completion."""
-
-    subprocess.run(
-        ["sudo", "-u", LIVE_USERNAME,
-         "xhost", "+SI:localuser:" + username],
-        stderr=subprocess.DEVNULL,
-        stdout=subprocess.DEVNULL,
-        check=True)
-
-    cmdline = ["sudo", "-u", username, command]
-    cmdline.extend(args)
-    try:
-        subprocess.run(cmdline, stderr=subprocess.PIPE, check=True,
-                       universal_newlines=True)
-    except subprocess.CalledProcessError as e:
-        logging.error("{command} returned with {returncode}".format(
-            command=command, returncode=e.returncode))
-        for line in e.stderr.splitlines():
-            logging.error(line)
-        raise
-    finally:
-        subprocess.run(
-            ["sudo", "-u", LIVE_USERNAME,
-             "xhost", "-SI:localuser:" + username],
-            stderr=subprocess.DEVNULL,
-            stdout=subprocess.DEVNULL,
-            check=True)
-
-
-def _launch_persistence_setup(*args):
-    """Launch tails-persistence-setup and wait for its completion."""
-    TPS_USERNAME = "tails-persistence-setup"
-
-    _launch_x_application(TPS_USERNAME,
-                          "/usr/bin/tails-persistence-setup",
-                          *args)
 
 
 def _notify(title, body="", accept_label="", deny_label="",
@@ -144,8 +118,8 @@ def _notify(title, body="", accept_label="", deny_label="",
             # sudo failed to execute the command
             raise OSError(completed_process.stderr)
     except OSError as e:
-        logging.warn("Warning: unable to notify the user. %s" % e)
-        logging.warn("The notification was: %s %s" % (title, body))
+        logging.warning("Warning: unable to notify the user. %s" % e)
+        logging.warning("The notification was: %s %s" % (title, body))
         return None
 
     if return_id:
@@ -164,20 +138,22 @@ def _notify(title, body="", accept_label="", deny_label="",
 def _notify_failure(summary, details=None):
     """Display a failure notification to the user of the live system.
 
-    The user has the option to edit the configuration of to view the system
+    The user has the option to edit the configuration or to view the system
     log.
     """
     if details:
+        # Translators: Don't translate {details}, it's a placeholder and will
+        # be replaced.
         details = _("{details} Please check your list of additional "
-                    "software packages or read the system log to "
+                    "software or read the system log to "
                     "understand the problem.").format(details=details)
 
     else:
         details = _("Please check your list of additional "
-                    "software packages or read the system log to "
-                    "understand the problem.").format(details=details)
+                    "software or read the system log to "
+                    "understand the problem.")
 
-    action_clicked = _notify(summary, details, _("Show log"), _("Configure"),
+    action_clicked = _notify(summary, details, _("Show Log"), _("Configure"),
                              urgent=True)
     if action_clicked == 1:
         show_system_log()
@@ -234,6 +210,21 @@ def _spawn_daemon(func):
     func()
 
 
+def _format_iterable(iterable):
+    """Return a nice formatted string with the elements of iterable."""
+    iterable = sorted(iterable)
+
+    if len(iterable) == 1:
+        return iterable[0]
+    elif len(iterable) > 1:
+        # Translators: Don't translate {beginning} or {last}, they are
+        # placeholders and will be replaced.
+        return _("{beginning} and {last}").format(
+            beginning=_(", ").join(iterable[:-1]), last=iterable[-1])
+    else:
+        return str(iterable)
+
+
 def has_additional_packages_list(search_new_persistence=False):
     """Return true iff a packages list file is found in a persistence.
 
@@ -243,13 +234,13 @@ def has_additional_packages_list(search_new_persistence=False):
     try:
         packages_list_path = get_packages_list_path(search_new_persistence)
     except FileNotFoundError as e:
-        logging.warn("Warning: {}".format(e))
+        logging.warning("Warning: {}".format(e))
         return False
     if os.path.isfile(packages_list_path):
         logging.info("Found additional packages list.")
         return True
     else:
-        logging.warn("Warning: no configuration file found.")
+        logging.warning("Warning: no configuration file found.")
         return False
 
 
@@ -261,8 +252,8 @@ def delete_old_apt_lists(old_apt_lists_dir=OLD_APT_LISTS_DIR):
 def save_old_apt_lists(srcdir=APT_LISTS_DIR, destdir=OLD_APT_LISTS_DIR):
     """Save a copy of the APT lists"""
     if os.path.exists(destdir):
-        logging.warn("Warning: a copy of the APT lists already exists, "
-                     "which should never happen. Removing it.")
+        logging.warning("Warning: a copy of the APT lists already exists, "
+                        "which should never happen. Removing it.")
         delete_old_apt_lists(destdir)
     shutil.copytree(srcdir, destdir, symlinks=True)
 
@@ -293,12 +284,14 @@ def handle_installed_packages(packages):
     """
     logging.info("New packages manually installed: %s" % packages)
     if has_unlocked_persistence(search_new_persistence=True):
+        # Translators: Don't translate {packages}, it's a placeholder and will
+        # be replaced.
         if _notify(_("Add {packages} to your additional software?").format(
-                    packages=" ".join(packages)),
+                    packages=_format_iterable(packages)),
                    _("To install it automatically from your persistent "
-                     "storage every time you start Tails"),
-                   _("Add to Persistent Storage"),
-                   _("Install only once"),
+                     "storage when starting Tails."),
+                   _("Install Every Time"),
+                   _("Install Only Once"),
                    urgent=True):
             try:
                 setup_additional_packages()
@@ -318,16 +311,18 @@ def handle_installed_packages(packages):
         # If they install packages with their persistent storage locked, they
         # probably do it with their persistent storage unlock as well and would
         # learn about this feature when it's most relevant for them.
-        logging.warn("Warning: persistence storage is locked, can't add "
-                     "additional software.")
+        logging.warning("Warning: persistence storage is locked, can't add "
+                        "additional software.")
     elif is_tails_media_writable():
+        # Translators: Don't translate {packages}, it's a placeholder and will
+        # be replaced.
         if _notify(_("Add {packages} to your additional software?").format(
-                    packages=" ".join(packages)),
+                    packages=_format_iterable(packages)),
                    _("To install it automatically when starting Tails, you "
                      "can create a persistent storage and activate the "
-                     "<b>Additional Software</b> feature"),
+                     "<b>Additional Software</b> feature."),
                    _("Create Persistent Storage"),
-                   _("Install only once"),
+                   _("Install Only Once"),
                    urgent=True):
             try:
                 create_persistence_and_setup_additional_packages(packages)
@@ -338,13 +333,16 @@ def handle_installed_packages(packages):
                                   "failed."))
                 raise e
     else:   # It's impossible to have a persistent storage
-        logging.warn("Cannot create persistent storage on this media.")
+        logging.warning("Cannot create persistent storage on this media.")
         if not os.path.isfile(ASP_STATE_INSTALLER_ASKED):
             open(ASP_STATE_INSTALLER_ASKED, 'a').close()
+            # Translators: Don't translate {packages}, it's a placeholder and
+            # will be replaced.
             _notify(_("You could install {packages} automatically when "
-                      "starting Tails").format(packages=" ".join(packages)),
+                      "starting Tails").format(
+                        packages=_format_iterable(packages)),
                     _("To do so, you need to run Tails from a USB stick "
-                      "installed using <i>Tails Installer</i>"),
+                      "installed using <i>Tails Installer</i>."),
                     documentation_target="install/clone",
                     urgent=True)
 
@@ -356,9 +354,14 @@ def handle_removed_packages(packages):
     actually remove them if requested.
     """
     logging.info("Additional packages removed: %s" % packages)
+    # Translators: Don't translate {packages}, it's a placeholder and will be
+    # replaced.
     if _notify(_("Remove {packages} from your additional software?").format(
-                 packages=" ".join(packages)),
-               "",
+                 packages=_format_iterable(packages)),
+               # Translators: Don't translate {packages}, it's a placeholder
+               # and will be replaced.
+               _("This will stop installing {packages} automatically.").format(
+                 packages=_format_iterable(packages)),
                _("Remove"),
                _("Cancel"),
                urgent=True):
@@ -372,9 +375,9 @@ def handle_removed_packages(packages):
 
 def setup_additional_packages():
     """Enable additional software in persistence."""
-    _launch_persistence_setup("--no-gui",
-                              "--no-display-finished-message",
-                              "--force-enable-preset", "AdditionalSoftware")
+    launch_persistence_setup("--no-gui",
+                             "--no-display-finished-message",
+                             "--force-enable-preset", "AdditionalSoftware")
 
 
 def create_persistence_and_setup_additional_packages(packages):
@@ -386,31 +389,32 @@ def create_persistence_and_setup_additional_packages(packages):
     packages should be a list of packages names.
     """
     logging.info("Creating new persistent volume")
-    _launch_persistence_setup("--step", "bootstrap",
-                              "--no-display-finished-message",
-                              "--force-enable-preset", "AdditionalSoftware")
+    launch_persistence_setup("--step", "bootstrap",
+                             "--no-display-finished-message",
+                             "--force-enable-preset", "AdditionalSoftware")
     add_additional_packages(packages, search_new_persistence=True)
     # show persistence configuration
-    _launch_persistence_setup()
+    launch_persistence_setup()
     # APT lists and APT archive cache will be synchronized at shutdown by
     # tails-synchronize-data-to-new-persistent-volume-on-shutdown.service
 
 
 def show_configuration_window():
     """Show additional packages configuration window."""
-    _launch_x_application(LIVE_USERNAME,
-                          "/usr/local/bin/tails-additional-software-config")
+    launch_x_application(LIVE_USERNAME,
+                         "/usr/local/bin/tails-additional-software-config")
 
 
 def show_system_log():
     """Show additional packages configuration window."""
-    _launch_x_application(LIVE_USERNAME,
-                          "/usr/bin/gedit",
-                          ASP_LOG_FILE)
+    launch_x_application(LIVE_USERNAME,
+                         "/usr/bin/gedit",
+                         ASP_LOG_FILE)
 
 
 def apt_hook_pre():
     """Subcommand to handle Dpkg::Pre-Install-Pkgs."""
+    _exit_if_in_live_build()
     logging.info("Saving package changes")
 
     apt_cache = apt.cache.Cache()
@@ -419,7 +423,8 @@ def apt_hook_pre():
     removed_packages = []
 
     line = sys.stdin.readline()
-    assert line.startswith("VERSION 3")
+    if not line.startswith("VERSION 3"):
+        raise ASPDataError("APT data is not version 3")
     line = sys.stdin.readline()
     # Ignore configuration space, which ends with an empty line
     while line != "\n":
@@ -467,33 +472,42 @@ def apt_hook_post():
     Retrieve the list of packages saved by apt_hook_pre, filter packages not
     interesting and pass the resulting list to the appropriate method.
     """
+    _exit_if_in_live_build()
     logging.info("Examining package changes")
 
     with open(ASP_STATE_PACKAGES) as f:
         packages = json.load(f)
     os.remove(ASP_STATE_PACKAGES)
 
-    additional_packages = get_additional_packages(search_new_persistence=True)
+    additional_packages_names = {
+        filter_package_details(pkg) for pkg in
+        get_additional_packages(search_new_persistence=True)
+    }
 
     apt_cache = apt.cache.Cache()
     # Filter automatically installed packages and packages already configured
     # as additional software
-    new_manually_installed_packages = set(filter(
-        lambda pkg: not apt_cache[pkg].is_auto_installed
-                    and pkg not in additional_packages,         # NOQA: E131
-        set(packages["installed"])))
+    new_manually_installed_packages = {
+        pkg for pkg in packages["installed"] if (
+            not apt_cache[pkg].is_auto_installed and
+            pkg not in additional_packages_names)
+    }
+
     if new_manually_installed_packages:
         handle_installed_packages(new_manually_installed_packages)
 
     # Filter non-additional software packages
     additional_packages_removed = set(packages["removed"]).intersection(
-        additional_packages)
+        additional_packages_names)
     if additional_packages_removed:
         handle_removed_packages(additional_packages_removed)
 
 
-def install_additional_packages(ignore_old_apt_lists=False):
-    """Subcommand which activates and installs all additional packages."""
+def install_additional_packages(upgrade_mode=False):
+    """Subcommand which activates and installs all additional packages.
+
+    If upgrade_mode is True, don't attempt to restore old apt lists and don't
+    notify the user using desktop notifications."""
     logging.info("Starting to install additional software...")
 
     if not has_additional_packages_list():
@@ -507,13 +521,13 @@ def install_additional_packages(ignore_old_apt_lists=False):
     # installation step below in this function will fail. To avoid
     # that, we restore the old APT lists: there are greater chances
     # that the APT packages cache still has the corresponding packages.
-    if os.path.isdir(OLD_APT_LISTS_DIR) and not ignore_old_apt_lists:
-        logging.warn("Found a copy of old APT lists, restoring it.")
+    if os.path.isdir(OLD_APT_LISTS_DIR) and not upgrade_mode:
+        logging.warning("Found a copy of old APT lists, restoring it.")
         try:
             restore_old_apt_lists()
         except Exception as e:
-            logging.warn("Restoring old APT lists failed with %r, "
-                         "deleting them and proceeding anyway." % e)
+            logging.warning("Restoring old APT lists failed with %r, "
+                            "deleting them and proceeding anyway." % e)
         # In all cases, delete the old APT lists: if they could be
         # restored we don't need them anymore (and we don't want to
         # restore them again next time); if they could not be
@@ -523,12 +537,13 @@ def install_additional_packages(ignore_old_apt_lists=False):
 
     packages = get_additional_packages()
     if not packages:
-        logging.warn("Warning: no packages to install, exiting")
+        logging.warning("Warning: no packages to install, exiting")
         return True
-    installing_notification_id = _notify(
+    if not upgrade_mode:
+        installing_notification_id = _notify(
             _("Installing your additional software from persistent "
               "storage..."),
-            _("This can take several minutes..."),
+            _("This can take several minutes."),
             return_id=True)
     logging.info("Will install the following packages: %s"
                  % " ".join(packages))
@@ -537,22 +552,26 @@ def install_additional_packages(ignore_old_apt_lists=False):
          "--option", "DPkg::Options::=--force-confold",
          "install"] + list(packages))
     if apt_get_returncode:
-        _close_notification(installing_notification_id)
-        logging.warn("Warning: installation of %s failed" % " ".join(packages))
-        _notify_failure(_("The installation of your additional software "
-                          "failed"))
+        logging.warning("Warning: installation of %s failed"
+                        % " ".join(packages))
+        if not upgrade_mode:
+            _close_notification(installing_notification_id)
+            _notify_failure(_("The installation of your additional software "
+                              "failed"))
         return False
     else:
         logging.info("Installation completed successfully.")
-        _close_notification(installing_notification_id)
-        # XXX: there should be a "Configure" button in this notification.
-        # However, the easy way to implement it makes this process not return
-        # until the notification is clicked. The notification process could be
-        # detached, and handle the "configure" action itself.
-        #  if _notify(_("Additional software installed successfully"),
-        #             accept_label=_("Configure")):
-        #      show_configuration_window()
-        _notify(_("Additional software installed successfully"))
+        if not upgrade_mode:
+            _close_notification(installing_notification_id)
+            # XXX: there should be a "Configure" button in this notification.
+            # However, the easy way to implement it makes this process not
+            # return until the notification is clicked. The notification
+            # process could be detached, and handle the "configure" action
+            # itself.
+            #  if _notify(_("Additional software installed successfully"),
+            #             accept_label=_("Configure")):
+            #      show_configuration_window()
+            _notify(_("Additional software installed successfully"))
         return True
 
 
@@ -571,15 +590,20 @@ def upgrade_additional_packages():
 
     apt_get_returncode = _launch_apt_get(["update"])
     if apt_get_returncode:
-        logging.warn("Warning: the update failed.")
-        _notify_failure(_("The upgrade of your additional software failed"),
-                        _("The check for upgrades failed."))
+        logging.warning("Warning: the update failed.")
+        _notify_failure(_("The check for upgrades of your additional software "
+                          "failed"),
+                        _("Please check your network connection, "
+                          "restart Tails, or read the system log to "
+                          "understand the problem."))
         return False
-    if install_additional_packages(ignore_old_apt_lists=True):
+    if install_additional_packages(upgrade_mode=True):
         logging.info("The upgrade was successful.")
     else:
         _notify_failure(_("The upgrade of your additional software failed"),
-                        _("The upgrade failed."))
+                        _("Please check your network connection, "
+                          "restart Tails, or read the system log to "
+                          "understand the problem."))
         return False
 
     # We now know that the APT packages cache is up-to-date wrt. the APT lists,
@@ -596,7 +620,7 @@ def upgrade_additional_packages():
     # must have been upgraded already.
     apt_get_returncode = _launch_apt_get(["autoclean"])
     if apt_get_returncode:
-        logging.warn("Warning: autoclean failed.")
+        logging.warning("Warning: autoclean failed.")
     return True
 
 
@@ -625,10 +649,10 @@ if __name__ == "__main__":
     else:
         log_level = logging.INFO
         log_format = "[%(levelname)s] %(message)s"
-    syslog_handler = logging.handlers.SysLogHandler(address="/dev/log")
+    stderr_handler = logging.StreamHandler()
     file_handler = logging.FileHandler(ASP_LOG_FILE)
     logging.basicConfig(format=log_format,
-                        handlers=[syslog_handler, file_handler],
+                        handlers=[stderr_handler, file_handler],
                         level=log_level)
 
     gettext.install("tails")

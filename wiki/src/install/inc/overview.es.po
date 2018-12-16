@@ -5,9 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-03-22 16:17+0100\n"
-"PO-Revision-Date: 2018-01-30 19:04+0000\n"
-"Last-Translator: Weblate Admin <admin@example.com>\n"
+"Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
+"POT-Creation-Date: 2018-08-20 15:50+0200\n"
+"PO-Revision-Date: 2018-05-09 18:18+0000\n"
+"Last-Translator: Tails translators <tails-l10n@boum.org>\n"
 "Language-Team: Spanish <http://translate.tails.boum.org/projects/tails/"
 "install-inc-overview/es/>\n"
 "Language: es\n"
@@ -18,10 +19,8 @@ msgstr ""
 "X-Generator: Weblate 2.10.1\n"
 
 #. type: Content of: <div><h3>
-#, fuzzy
-#| msgid "You will need"
 msgid "You need"
-msgstr "Necesitarás"
+msgstr "Necesitas"
 
 #. type: Content of: <div><div><div><div>
 msgid "[[!img install/inc/icons/clock.png link=\"no\" alt=\"\"]]"
@@ -30,18 +29,18 @@ msgstr "[[!img install/inc/icons/clock.png link=\"no\" alt=\"\"]]"
 #. type: Content of: <div><div><div><div><div><h4>
 #, fuzzy
 #| msgid ""
-#| "<span class=\"windows linux mac-usb mac-dvd\">2 hours</span> <span class="
-#| "\"debian expert\">1½ hour</span> <span class=\"install-clone\">½ hour</"
-#| "span> <span class=\"upgrade-clone\">¼ hour</span>"
+#| "<span class=\"windows linux mac-usb mac-dvd\">2 hours in total</span> "
+#| "<span class=\"debian expert\">1½ hour in total</span> <span class="
+#| "\"install-clone\">½ hour</span> <span class=\"upgrade-clone\">¼ hour</"
+#| "span>"
 msgid ""
-"<span class=\"windows linux mac-usb mac-dvd upgrade-tails\">2 hours in "
-"total</span> <span class=\"debian expert\">1½ hour in total</span> <span "
-"class=\"install-clone\">½ hour</span> <span class=\"upgrade-clone\">¼ hour</"
-"span>"
+"<span class=\"windows linux mac-usb mac-dvd\">2 hours in total</span> <span "
+"class=\"debian expert upgrade-tails\">1½ hour in total</span> <span class="
+"\"install-clone\">½ hour</span> <span class=\"upgrade-clone\">¼ hour</span>"
 msgstr ""
-"<span class=\"windows linux mac-usb mac-dvd\">2 horas</span> <span class="
-"\"debian expert\">1½ hora</span> <span class=\"install-clone\">½ hora</span> "
-"<span class=\"upgrade-clone\">¼ hora</span>"
+"<span class=\"windows linux mac-usb mac-dvd\">2 horas en total</span> <span "
+"class=\"debian expert\">1½ hora en total</span> <span class=\"install-clone"
+"\">½ hora</span> <span class=\"upgrade-clone\">¼ hora</span>"
 
 #. type: Content of: <div><div><div><div><div><h4><span>
 msgid ""
@@ -54,12 +53,6 @@ msgstr ""
 "\"]] para descargar</small>"
 
 #. type: Content of: <div><div><div><div><div><h4>
-#, fuzzy
-#| msgid ""
-#| "</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hour to "
-#| "install</small></span> <span class=\"debian expert\"><small>½ hour to "
-#| "install</small></span> <span class=\"upgrade-tails\"><small>¼ hour to "
-#| "upgrade</small></span>"
 msgid ""
 "</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hour to "
 "install</small></span> <span class=\"debian expert\"><small>½ hour to "
@@ -68,7 +61,7 @@ msgid ""
 msgstr ""
 "</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hora para "
 "instalar</small></span> <span class=\"debian expert\"><small>½ hora para "
-"instalar</small></span> <span class=\"upgrade-tails\"><small>¼ hora para "
+"instalar</small></span> <span class=\"upgrade-tails\"><small>½ hora para "
 "actualizar</small></span>"
 
 #. type: Content of: <div><div><div><div>
@@ -117,8 +110,8 @@ msgid ""
 "\"]] [[!inline pages=\"install/inc/router/why_two.inline\" raw=\"yes\" sort="
 "\"age\"]] \"\"\"]]"
 msgstr ""
-"[[!toggleable id=\"why_two\" text=\"\"\" [[!toggle id=\"why_two\" text=\"X"
-"\"]] [[!inline pages=\"install/inc/router/why_two.inline\" raw=\"yes\" sort="
+"[[!toggleable id=\"why_two\" text=\"\"\" [[!toggle id=\"why_two\" text=\"X\""
+"]] [[!inline pages=\"install/inc/router/why_two.inline.es\" raw=\"yes\" sort="
 "\"age\"]] \"\"\"]]"
 
 #. type: Content of: <div><div><div><div><div><h4>
@@ -150,33 +143,6 @@ msgstr "[[!img install/inc/icons/1-dvd.png link=\"no\" alt=\"\"]]"
 #. type: Content of: <div><div><div><div><div><h4>
 msgid "1 DVD"
 msgstr "1 DVD"
-
-#. type: Content of: <div><div><div><div><div><h4>
-#, fuzzy
-#| msgid ""
-#| "<span class=\"windows linux mac-usb mac-dvd\">2 hours</span> <span class="
-#| "\"debian expert\">1½ hour</span> <span class=\"install-clone\">½ hour</"
-#| "span> <span class=\"upgrade-clone\">¼ hour</span>"
-msgid ""
-"<span class=\"windows linux mac-usb mac-dvd\">2 hours in total</span> <span "
-"class=\"debian expert\">1½ hour in total</span> <span class=\"install-clone"
-"\">½ hour</span> <span class=\"upgrade-clone\">¼ hour</span>"
-msgstr ""
-"<span class=\"windows linux mac-usb mac-dvd\">2 horas</span> <span class="
-"\"debian expert\">1½ hora</span> <span class=\"install-clone\">½ hora</span> "
-"<span class=\"upgrade-clone\">¼ hora</span>"
-
-#. type: Content of: <div><div><div><div><div><h4>
-msgid ""
-"</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hour to "
-"install</small></span> <span class=\"debian expert\"><small>½ hour to "
-"install</small></span> <span class=\"upgrade-tails\"><small>¼ hour to "
-"upgrade</small></span>"
-msgstr ""
-"</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hora para "
-"instalar</small></span> <span class=\"debian expert\"><small>½ hora para "
-"instalar</small></span> <span class=\"upgrade-tails\"><small>¼ hora para "
-"actualizar</small></span>"
 
 #. type: Content of: <div><div><div><div>
 msgid "[[!img install/inc/icons/screens.png link=\"no\" alt=\"\"]]"
@@ -263,10 +229,6 @@ msgid "Install"
 msgstr "Instalar"
 
 #. type: Content of: <div><ol><li><div><div><div>
-#, fuzzy
-#| msgid ""
-#| "[[!img install/inc/infography/upgrade-upgrade-usb.png link=\"no\" alt="
-#| "\"ISO image installed on USB stick on the left\"]]"
 msgid ""
 "[[!img install/inc/infography/install-upgrade-usb.png link=\"no\" alt=\"ISO "
 "image installed on USB stick on the left\"]]"
@@ -336,6 +298,28 @@ msgstr ""
 #. type: Content of: <div><ol><li><div><div><div><div><h5>
 msgid "Configure"
 msgstr "Configurar"
+
+#~ msgid ""
+#~ "<span class=\"windows linux mac-usb mac-dvd upgrade-tails\">2 hours in "
+#~ "total</span> <span class=\"debian expert\">1½ hour in total</span> <span "
+#~ "class=\"install-clone\">½ hour</span> <span class=\"upgrade-clone\">¼ "
+#~ "hour</span>"
+#~ msgstr ""
+#~ "<span class=\"windows linux mac-usb mac-dvd upgrade-tails\">2 horas en "
+#~ "total</span> <span class=\"debian expert\">1½ hora en total</span> <span "
+#~ "class=\"install-clone\">½ hora</span> <span class=\"upgrade-clone\">¼ "
+#~ "hora</span>"
+
+#~ msgid ""
+#~ "</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hour to "
+#~ "install</small></span> <span class=\"debian expert\"><small>½ hour to "
+#~ "install</small></span> <span class=\"upgrade-tails\"><small>¼ hour to "
+#~ "upgrade</small></span>"
+#~ msgstr ""
+#~ "</span> <span class=\"windows linux mac-usb mac-dvd\"><small>1 hora para "
+#~ "instalar</small></span> <span class=\"debian expert\"><small>½ hora para "
+#~ "instalar</small></span> <span class=\"upgrade-tails\"><small>¼ hora para "
+#~ "actualizar</small></span>"
 
 #~ msgid ""
 #~ "[[!img install/inc/infography/install-upgrade-usb.png link=\"no\" alt="

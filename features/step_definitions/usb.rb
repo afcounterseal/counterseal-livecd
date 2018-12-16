@@ -94,11 +94,11 @@ end
 
 
 def recover_from_upgrader_failure
-    $vm.execute('killall tails-upgrade-frontend tails-upgrade-frontend-wrapper zenity')
-    # Remove unnecessary sleep for retry
-    $vm.execute_successfully('sed -i "/^sleep 30$/d" ' +
-                             '/usr/local/bin/tails-upgrade-frontend-wrapper')
-    $vm.spawn('tails-upgrade-frontend-wrapper', user: LIVE_USER)
+  $vm.execute('pkill --full tails-upgrade-frontend-wrapper')
+  $vm.execute('killall tails-upgrade-frontend zenity')
+  # Do not sleep when retrying
+  $vm.execute_successfully('/usr/local/bin/tails-upgrade-frontend-wrapper --no-wait')
+  $vm.spawn('tails-upgrade-frontend-wrapper', user: LIVE_USER)
 end
 
 Given /^I clone USB drive "([^"]+)" to a (new|temporary) USB drive "([^"]+)"$/ do |from, mode, to|
@@ -194,7 +194,12 @@ When /^I (install|reinstall|upgrade) Tails (?:to|on) USB drive "([^"]+)" (by clo
       label = action.capitalize
     end
     @installer.button(label).click
-    @installer.child('Question', roleName: 'alert').button('Yes').click
+    if action == 'upgrade'
+      confirmation_label = 'Upgrade'
+    else
+      confirmation_label = 'Install'
+    end
+    @installer.child('Question', roleName: 'alert').button(confirmation_label).click
     try_for(15*60, { :delay => 10 }) do
       @installer
         .child('Information', roleName: 'alert')
@@ -383,7 +388,7 @@ Then /^a Tails persistence partition exists on USB drive "([^"]+)"$/ do |name|
 end
 
 Given /^I enable persistence$/ do
-  @screen.wait_and_click('TailsGreeterPersistencePassphrase.png', 10)
+  @screen.wait_and_click('TailsGreeterPersistencePassphrase.png', 60)
   @screen.type(@persistence_password + Sikuli::Key.ENTER)
   @screen.wait('TailsGreeterPersistenceUnlocked.png', 30)
 end
@@ -774,9 +779,12 @@ Then /^I can successfully install the incremental upgrade to version (.+)$/ do |
     step 'I agree to install the incremental upgrade'
   end
   failure_pic = 'TailsUpgraderFailure.png'
-  success_pic = "TailsUpgraderDone.png"
+  success_pic = 'TailsUpgraderDownloadComplete.png'
   retry_tor(recovery_proc) do
     match, _ = @screen.waitAny([success_pic, failure_pic], 2*60)
     assert_equal(success_pic, match)
   end
+  @screen.click('TailsUpgraderApplyUpgradeButton.png')
+  @screen.wait('TailsUpgraderApplyingUpgrade.png', 20)
+  @screen.wait('TailsUpgraderDone.png', 60)
 end

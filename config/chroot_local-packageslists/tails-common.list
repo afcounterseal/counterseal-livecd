@@ -8,8 +8,6 @@ whisperback
 python3-pyinotify
 # contains mkpasswd, needed in chroot_local-hooks/01-password
 whois
-# needed by getTorBrowserUserAgent
-unzip
 # needed in chroot_local-includes/etc/NetworkManager/dispatcher.d/50-htp.sh
 bind9-host
 # needed by tails-security-check
@@ -344,14 +342,20 @@ intel-microcode
 
 ### Dictionaries and spell checking
 hunspell-ar
+hunspell-da
 hunspell-de-de
 hunspell-en-us
 hunspell-es
 myspell-fa
 hunspell-fr
+hunspell-he
 hunspell-it
+hunspell-ko
+hunspell-nl
+hunspell-pl
 hunspell-pt-br
 hunspell-ru
+hunspell-sv
 hunspell-vi
 
 ### Mobile broadband devices support (GSM, 3G...)
@@ -406,10 +410,6 @@ python3-systemd
 xclip
 xdotool
 
-# Enable Electrum's Qt GUI & TREZOR support
-python-qt4
-python-trezor
-
 # onion-grater
 python3-psutil
 python3-yaml
@@ -425,15 +425,8 @@ python3-pydbus
 # For our python "shell" scripting support
 python3-sh
 
-# For tails-perl5lib and tails-persistence-setup
-# XXX: remove once tails-perl5lib and tails-persistence-setup have
-# their respective feature/14594-asp-gui branch merged.
-libclass-xsaccessor-perl
-libfunction-parameters-perl
-libmoox-options-perl
-libtype-tiny-xs-perl
-libtypes-path-tiny-perl
-libuuid-tiny-perl
+# For Unlock VeraCrypt Volumes
+gir1.2-gudev-1.0
 
 # GNOME Software
 gnome-software

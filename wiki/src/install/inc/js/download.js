@@ -99,9 +99,9 @@ document.addEventListener("DOMContentLoaded", function() {
          - https://developer.chrome.com/extensions/api_index
     */
     minVersion = {
-      "firefox": 45,  // First release with chrome.runtime.getManifest
-      "chrome": 22,   // First release with chrome.runtime.getManifest
-      "torbrowser": 6 // First release based on Firefox 45
+      "firefox": 52,  // Tor Browser when releasing Tails Verification 1.0
+      "chrome": 57,   // Version from Debian Jessie, the oldest I could test
+      "torbrowser": 7 // First release based on Firefox 52
     };
     document.getElementById("min-version-firefox").textContent = minVersion.firefox.toString();
     document.getElementById("min-version-chrome").textContent = minVersion.chrome.toString();
@@ -132,9 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     toggleDisplay(document.getElementsByClassName("no-js"), "hide");
     if (browser === "Firefox") {
-      if (version === 52) {
-        show(document.getElementById("broken-in-3-6"));
-      }
       if (version >= minVersion.firefox) {
         // Supported Firefox
         toggleDisplay(document.getElementsByClassName("supported-browser"), "show");
@@ -171,6 +168,18 @@ document.addEventListener("DOMContentLoaded", function() {
       hide(document.getElementById("next-bittorrent"));
       show(document.getElementById(state));
     }
+  }
+
+  function hitCounter(status) {
+    try {
+      var counter_url, url, scenario, version, cachebust;
+      counter_url = "/install/download/counter";
+      url = window.location.href.split("/");
+      scenario = url[url.lastIndexOf("install") + 1];
+      version = document.getElementById("tails-version").textContent.replace("\n", "");
+      cachebust = Math.round(new Date().getTime() / 1000);
+      fetch(counter_url + "?scenario=" + scenario + "&version=" + version + "&status=" + status + "&cachebust=" + cachebust);
+    } catch (e) { } // Ignore if we fail to hit the download counter
   }
 
   function resetVerificationResult(result) {
@@ -212,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function() {
     showVerifyDownload();
     hide(document.getElementById("verify-download-wrapper"));
     resetVerificationResult();
+    hitCounter(result);
     if (result === "successful") {
       show(document.getElementById("verification-successful"));
       opaque(document.getElementById("step-continue-direct"));
@@ -261,34 +271,46 @@ document.addEventListener("DOMContentLoaded", function() {
   opaque(document.getElementById("continue-link-bittorrent"));
 
   // Display "Verify with your browser" when ISO image is clicked
-  document.getElementById("download-iso").onclick = function() {
-    toggleDirectBitTorrent("direct");
-    resetVerificationResult();
+  document.getElementById("download-iso").onclick = function(e) {
+    try {
+      e.preventDefault();
+      hitCounter("download-iso");
+      toggleDirectBitTorrent("direct");
+      resetVerificationResult();
+    } finally {
+      // Setting window.location.href will abort AJAX requests resulting
+      // in a NetworkError depending on the timing and browser.
+      window.open(this.getAttribute("href"), "_blank");
+    }
   }
 
   // Display "Verify with your browser" when "I already" is clicked
   document.getElementById("already-downloaded").onclick = function() {
+    hitCounter("already-downloaded");
     toggleDirectBitTorrent("direct");
     resetVerificationResult();
   }
 
   // Reset verification when downloading again after failure
-  document.getElementById("download-iso-again").onclick = function() {
-    toggleDirectBitTorrent("direct");
-    resetVerificationResult();
+  document.getElementById("download-iso-again").onclick = function(e) {
+    try {
+      e.preventDefault();
+      hitCounter("download-iso-again");
+      toggleDirectBitTorrent("direct");
+      resetVerificationResult();
+    } finally {
+      window.location = this.getAttribute("href");
+    }
   }
 
   // Display "Verify with BitTorrent" when Torrent file is clicked
-  document.getElementById("download-torrent").onclick = function() {
-    toggleDirectBitTorrent("bittorrent");
-  }
-
-  // Install Chrome extension when clicking "chrome" links
-  // See https://developer.chrome.com/webstore/inline_installation
-  var chromeInstallationLinks = document.getElementsByClassName("chrome");
-  for (let i = 0; i < chromeInstallationLinks.length; i++) {
-    chromeInstallationLinks[i].onclick = function() {
-      chrome.webstore.install();
+  document.getElementById("download-torrent").onclick = function(e) {
+    try {
+      e.preventDefault();
+      hitCounter("download-torrent");
+      toggleDirectBitTorrent("bittorrent");
+    } finally {
+      window.location = this.getAttribute("href");
     }
   }
 

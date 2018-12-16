@@ -3,22 +3,28 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-03-30 18:39+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2018-09-18 06:11+0200\n"
+"PO-Revision-Date: 2018-04-08 14:19+0000\n"
+"Last-Translator: Tails translators <amnesia@boum.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.10.1\n"
 
 #. type: Plain text
 #, no-wrap
 msgid "[[!meta date=\"Fri, 30 Mar 2018 17:00:00 +0000\"]]\n"
+msgstr "[[!meta date=\"Fri, 30 Mar 2018 17:00:00 +0000\"]]\n"
+
+#. type: Plain text
+#, no-wrap
+msgid "[[!pagetemplate template=\"news.tmpl\"]]\n"
 msgstr ""
 
 #. type: Plain text
@@ -29,19 +35,19 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "[[!tag announce]]\n"
-msgstr ""
+msgstr "[[!tag announce]]\n"
 
 #. type: Plain text
 msgid ""
-"This release fixes [[several security "
-"issues|security/Numerous_security_holes_in_3.6.1]] and users should upgrade "
-"as soon as possible."
+"This release fixes [[several security issues|security/"
+"Numerous_security_holes_in_3.6.1]] and users should upgrade as soon as "
+"possible."
 msgstr ""
 
 #. type: Plain text
 #, no-wrap
 msgid "[[!toc levels=1]]\n"
-msgstr ""
+msgstr "[[!toc levels=1]]\n"
 
 #. type: Title #
 #, no-wrap
@@ -88,14 +94,14 @@ msgstr ""
 
 #. type: Plain text
 msgid ""
-"For more details, read our [[!tails_gitweb debian/changelog "
-"desc=\"changelog\"]]."
+"For more details, read our [[!tails_gitweb debian/changelog desc=\"changelog"
+"\"]]."
 msgstr ""
 
 #. type: Plain text
 #, no-wrap
 msgid "<a id=\"known-issues\"></a>\n"
-msgstr ""
+msgstr "<a id=\"known-issues\"></a>\n"
 
 #. type: Plain text
 msgid "See the list of [[long-standing issues|support/known_issues]]."
@@ -111,7 +117,8 @@ msgid "- To install, follow our [[installation instructions|install]]."
 msgstr ""
 
 #. type: Bullet: '- '
-msgid "To upgrade, automatic upgrades are available from 3.6 and 3.6.1 to 3.6.2."
+msgid ""
+"To upgrade, automatic upgrades are available from 3.6 and 3.6.1 to 3.6.2."
 msgstr ""
 
 #. type: Plain text
@@ -124,8 +131,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid ""
-"  If you are doing a manual upgrade from Tails 3.2, 3.3, 3.4, or 3.5, it is "
-"only possible to select an\n"
+"  If you are doing a manual upgrade from Tails 3.2, 3.3, 3.4, or 3.5, it is only possible to select an\n"
 "  ISO image when running Tails in English. For other languages, the\n"
 "  file chooser button remains inactive:\n"
 msgstr ""
@@ -133,7 +139,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "  [[!img news/version_3.5/broken-file-chooser.png link=\"no\"]]\n"
-msgstr ""
+msgstr "  [[!img news/version_3.5/broken-file-chooser.png link=\"no\"]]\n"
 
 #. type: Plain text
 #, no-wrap
@@ -153,7 +159,7 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid "    <pre>LANG=en_US tails-installer</pre>\n"
-msgstr ""
+msgstr "    <pre>LANG=en_US tails-installer</pre>\n"
 
 #. type: Plain text
 msgid "- [[Download Tails 3.6.2.|install/download]]"
@@ -176,7 +182,6 @@ msgstr ""
 #, no-wrap
 msgid ""
 "We need your help and there are many ways to [[contribute to\n"
-"Tails|contribute]] (<a "
-"href=\"https://tails.boum.org/donate?r=3.6.2\">donating</a> is only one of\n"
+"Tails|contribute]] (<a href=\"https://tails.boum.org/donate?r=3.6.2\">donating</a> is only one of\n"
 "them). Come [[talk to us|about/contact#tails-dev]]!\n"
 msgstr ""
