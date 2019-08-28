@@ -48,6 +48,10 @@ Given /^a computer$/ do
   $vm = VM.new($virt, VM_XML_PATH, $vmnet, $vmstorage, DISPLAY)
 end
 
+Given /^the computer has (\d+) ([[:alpha:]]+) of RAM$/ do |size, unit|
+  $vm.set_ram_size(size, unit)
+end
+
 Given /^the computer is set to boot from the Tails DVD$/ do
   $vm.set_cdrom_boot(TAILS_ISO)
 end
@@ -403,15 +407,15 @@ end
 Given /^the Tor Browser loads the (startup page|Tails homepage|Tails roadmap)$/ do |page|
   case page
   when "startup page"
-    title = 'Tails'
+    titles = ['Tails', 'Tails - Trying a testing version of Tails']
   when "Tails homepage"
-    title = 'Tails - Privacy for anyone anywhere'
+    titles = ['Tails - Privacy for anyone anywhere']
   when "Tails roadmap"
-    title = 'Roadmap - Tails - Tails Ticket Tracker'
+    titles = ['Roadmap - Tails - Tails Ticket Tracker']
   else
     raise "Unsupported page: #{page}"
   end
-  step "\"#{title}\" has loaded in the Tor Browser"
+  page_has_loaded_in_the_Tor_Browser(titles, @language)
 end
 
 When /^I request a new identity using Torbutton$/ do
@@ -528,8 +532,7 @@ Given /^I kill the process "([^"]+)"$/ do |process|
 end
 
 Then /^Tails eventually (shuts down|restarts)$/ do |mode|
-  # Timeout bumped from 3 to 10 minutes because of #16312:
-  try_for(10*60) do
+  try_for(3*60) do
     if mode == 'restarts'
       @screen.find('TailsGreeter.png')
       true
@@ -826,7 +829,7 @@ Given /^a web server is running on the LAN$/ do
   end
   server.start
 EOF
-  add_lan_host(@web_server_ip_addr, @web_server_port)
+  add_extra_allowed_host(@web_server_ip_addr, @web_server_port)
   proc = IO.popen(['ruby', '-e', code])
   try_for(10, :msg => "It seems the LAN web server failed to start") do
     Process.kill(0, proc.pid) == 1

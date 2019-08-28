@@ -76,7 +76,7 @@ def try_for(timeout, options = {})
   #    unique to.
   # Let 1 be the base step, and 2 the inductive step, and we have a
   # inductive argument for the correctness of nested try_for. It shows
-  # that for an arbitraily large stack of try_for:s, any of the unique
+  # that for an arbitrary large stack of try_for:s, any of the unique
   # exceptions will be caught only by the try_for instance it is
   # unique to, and all try_for:s in between will ignore it.
 rescue unique_timeout_exception => e
@@ -232,7 +232,7 @@ def all_tor_hosts
 end
 
 def allowed_hosts_under_tor_enforcement
-  all_tor_hosts + @lan_hosts
+  all_tor_hosts + @extra_allowed_hosts
 end
 
 def get_free_space(machine, path)
