@@ -376,7 +376,7 @@ crda
 wireless-regdb
 
 ### Automated test suite
-python-dogtail
+python3-dogtail
 python3-serial
 python3-systemd
 xclip
@@ -408,3 +408,8 @@ fatresize
 
 # For Thunderbolt
 bolt
+
+# IPhone tethering support
+ipheth-utils
+libimobiledevice-utils
+usbmuxd

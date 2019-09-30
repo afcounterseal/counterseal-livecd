@@ -140,7 +140,9 @@ When /^I unlock and mount this VeraCrypt (volume|file container) with Unlock Ver
   when 'file container'
     @screen.wait_and_click('UnlockVeraCryptVolumesAddButton.png', 10)
     @screen.wait('Gtk3FileChooserDesktopButton.png', 10)
-    @screen.type(@veracrypt_shared_dir_in_guest + '/' + $veracrypt_volume_name + Sikuli::Key.ENTER)
+    @screen.type(@veracrypt_shared_dir_in_guest + '/' + $veracrypt_volume_name)
+    sleep 2 # avoid ENTER being eaten by the auto-completion system
+    @screen.type(Sikuli::Key.ENTER)
   end
   @screen.wait('VeraCryptUnlockDialog.png', 10)
   @screen.type(
@@ -176,10 +178,7 @@ When /^I unlock and mount this VeraCrypt (volume|file container) with GNOME Disk
     gnome_shell = Dogtail::Application.new('gnome-shell')
     menu = gnome_shell.menu('Disks')
     menu.click()
-    @screen.wait_and_click('GnomeDisksAttachDiskImageMenuEntry.png', 10)
-    # Once we use a more recent Dogtail that can deal with UTF-8 (#12185),
-    # we can instead do:
-    #   gnome_shell.child('Attach Disk Image…', roleName: 'label').click
+    gnome_shell.child('Attach Disk Image…', roleName: 'label').click
     # Otherwise Disks is sometimes minimized, for some reason I don't understand
     sleep 2
     attach_dialog = disks.child('Select Disk Image to Attach', roleName: 'file chooser', showingOnly: true)
