@@ -71,7 +71,7 @@ Pin: origin deb.tails.boum.org
 Pin-Priority: 999
 
 Package: tor tor-geoipdb
-Pin: release o=TorProject,n=tor-nightly-master-stretch
+Pin: release o=TorProject,n=tor-nightly-master-buster
 Pin-Priority: 999
 
 Package: virtualbox*
