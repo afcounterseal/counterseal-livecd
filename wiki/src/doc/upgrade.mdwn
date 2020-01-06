@@ -85,6 +85,45 @@ pages:
 If your Tails USB stick fails to start after an automatic upgrade, see
 below how to do a manual upgrade.
 
+Optimizing the size of the download
+===================================
+
+When doing automatic upgrades, the size of the download will increase
+over time. You can reduce the size of the download for future upgrades
+by doing a [[manual upgrade|upgrade#manual-upgrade]] of your Tails.
+
+On your Tails USB stick, you always have stored:
+
+* A base version
+* An upgrade package
+
+[[!img system.svg]]
+
+When doing an automatic upgrade, *Tails Upgrader* downloads a package
+containing all the changes made to Tails since the *base* version
+installed on your USB stick.
+
+Your *base* version is the version that you first installed on the USB
+stick or the version to which you did a manual upgrade.
+
+For example, if you first installed Tails 4.2, your base version is 4.2.
+After installing, if you do a manual upgrade to 4.3, your base version
+is now 4.3.
+
+In the diagram below, the base version is *V0*. To do a manual upgrade
+of *V0* to *V1*, *Tails Upgrader* will download the red package, of size
+1. To do a manual upgrade of the same USB stick from *V1* to *V2*,
+*Tails Upgrade* will download the orange package, of size 2. To do a
+manual upgrade of the same USB stick from *V
+
+[[!img base.svg]]
+
+base version
+how do I know my base version
+give example of sizes
+manual upgrades
+how do I change my base version to a newer version
+
 <a name="manual"></a>
 
 Manual upgrade using <span class="application">Tails Installer</span>
