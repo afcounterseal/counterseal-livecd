@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tails\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2019-10-10 11:28+0200\n"
-"PO-Revision-Date: 2020-01-21 18:26+0000\n"
+"POT-Creation-Date: 2020-06-02 06:04+0000\n"
+"PO-Revision-Date: 2020-02-15 21:26+0000\n"
 "Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: Spanish <http://translate.tails.boum.org/projects/tails/"
 "license/es/>\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #. type: Title =
 #, no-wrap
-msgid "Source code\n"
-msgstr "Código fuente\n"
+msgid "Source code"
+msgstr "Código fuente"
 
 #. type: Plain text
 msgid ""
@@ -92,11 +92,18 @@ msgid ""
 "  - license: Creative Commons Attribution 3.0\n"
 "  - author: [Firefox user 14030863](https://addons.mozilla.org/en-US/firefox/user/14030863/)\n"
 msgstr ""
+"- El [[!tails_gitweb\n"
+"  config/chroot_local-includes/usr/share/tails/chroot-browsers/unsafe-browser/extensions/red-2.0-an+fx.xpi\n"
+"  desc=\"tema rojo\"]] usado por el _Unsafe Browser_ de Tails se descargó\n"
+"del sitio de extensiones de Mozilla\n"
+"  (<https://addons.mozilla.org/en-US/firefox/addon/simplyred/>):\n"
+"  - licencia: Creative Commons Attribution 3.0\n"
+"  - autor/a: [Firefox user 14030863](https://addons.mozilla.org/en-US/firefox/user/14030863/)\n"
 
 #. type: Title =
 #, no-wrap
-msgid "Website\n"
-msgstr "Página web\n"
+msgid "Website"
+msgstr "Página web"
 
 #. type: Plain text
 msgid ""
@@ -111,8 +118,8 @@ msgid ""
 "The Tails logo is based on [[USB|http://thenounproject.com/term/usb/23873/]] "
 "by Ilsur Aptukov from the Noun Project."
 msgstr ""
-"El logo de Tails está basado en [[USB|http://thenounproject.com/term/usb/"
-"23873/]] de Ilsur Aptukov del Noun Project."
+"El logo de Tails está basado en [[USB|http://thenounproject.com/term/"
+"usb/23873/]] de Ilsur Aptukov del Noun Project."
 
 #. type: Plain text
 msgid "- Debian logo: Copyright (c) 1999 Software in the Public Interest."
@@ -127,48 +134,84 @@ msgstr ""
 
 #. type: Bullet: '- '
 msgid ""
-"All the [[drawings of our personas|contribute/personas]] are licensed under "
-"the <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">Creative "
-"Commons Attribution-ShareAlike 4.0 International License</a>, copyright "
-"Thomas Verguet."
+"The drawings on our [[Home|index]] and [[About|about]] pages are licensed "
+"under the [Creative Commons Attribution-ShareAlike 4.0 International License]"
+"(https://creativecommons.org/licenses/by-sa/4.0/), copyright [Andrés "
+"Fernández Cordón](https://anhdr.es/)."
 msgstr ""
 
 #. type: Bullet: '- '
+#, fuzzy
+#| msgid ""
+#| "All the [[drawings of our personas|contribute/personas]] are licensed "
+#| "under the <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
+#| "\">Creative Commons Attribution-ShareAlike 4.0 International License</a>, "
+#| "copyright Thomas Verguet."
 msgid ""
-"The [[boot menu animation|install/win/usb#animation]] is licensed under the "
-"<a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">Creative Commons "
-"Attribution-ShareAlike 4.0 International License</a>, copyright [Odile "
-"Carabantes](https://studiomoare.com/) and [Enso Studio](https://www."
-"ensostudio.tv/)."
+"All the [[drawings of our personas|contribute/personas]] are licensed under "
+"the [Creative Commons Attribution-ShareAlike 4.0 International License]"
+"(https://creativecommons.org/licenses/by-sa/4.0/), copyright Thomas Verguet."
 msgstr ""
+"Todos los [[dibujos de nuestras personas|contribute/personas]] están "
+"licenciados bajo la <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
+"\">Creative Commons Attribution-ShareAlike 4.0 International License</a>, "
+"copyright Thomas Verguet."
+
+#. type: Bullet: '- '
+#, fuzzy
+#| msgid ""
+#| "The [[boot menu animation|install/win/usb#animation]] is licensed under "
+#| "the <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">Creative "
+#| "Commons Attribution-ShareAlike 4.0 International License</a>, copyright "
+#| "[Odile Carabantes](https://studiomoare.com/) and [Enso Studio](https://"
+#| "www.ensostudio.tv/)."
+msgid ""
+"The [[Boot Menu animation|install/win/usb#animation]] is licensed under the "
+"[Creative Commons Attribution-ShareAlike 4.0 International License](https://"
+"creativecommons.org/licenses/by-sa/4.0/), copyright [Odile Carabantes]"
+"(https://studiomoare.com/) and [Enso Studio](https://www.ensostudio.tv/)."
+msgstr ""
+"La [[animación del menú de arranque|install/win/usb#animation]] está "
+"licenciada bajo la <a href=\"https://creativecommons.org/licenses/by-sa/4.0/"
+"\">Creative Commons Attribution-ShareAlike 4.0 International License</a>, "
+"copyright [Odile Carabantes](https://studiomoare.com/) y [Enso Studio]"
+"(https://www.ensostudio.tv/)."
 
 #. type: Plain text
 msgid "- Icons from [[The Noun Project|http://thenounproject.com/]]:"
-msgstr ""
+msgstr "- Iconos de [[The Noun Project|http://thenounproject.com/]]:"
 
 #. type: Bullet: '  - '
 msgid ""
 "[[Announcement|http://thenounproject.com/term/announcement/1186/]]: Creative "
 "Commons - Attribution, by Olivier Guin."
 msgstr ""
+"[[Anuncio|http://thenounproject.com/term/announcement/1186/]]: Creative "
+"Commons - Atribución, por Olivier Guin."
 
 #. type: Bullet: '  - '
 msgid ""
 "[[Code|http://thenounproject.com/term/code/18033/]]: Creative Commons — "
 "Attribution, by Azis."
 msgstr ""
+"[[Code|http://thenounproject.com/term/code/18033/]]: Creative Commons — "
+"Atribución, por Azis."
 
 #. type: Bullet: '  - '
 msgid ""
 "[[Pen|http://thenounproject.com/term/pen/18907/]]: Creative Commons — "
 "Attribution, by factor[e] design initiative."
 msgstr ""
+"[[Pen|http://thenounproject.com/term/pen/18907/]]: Creative Commons — "
+"Atribución, por factor[e] design initiative."
 
 #. type: Bullet: '  - '
 msgid ""
 "[[Loan|http://thenounproject.com/term/loan/19538/]]: Public Domain, by "
 "Rohith M S."
 msgstr ""
+"[[Loan|http://thenounproject.com/term/loan/19538/]]: Dominio Público, por "
+"Rohith M S."
 
 #. type: Bullet: '  - '
 msgid ""
@@ -241,6 +284,8 @@ msgid ""
 "[[Smart Phones|https://thenounproject.com/term/smartphone/25790]]: Creative "
 "Commons — Attribution, by Pham Thi Dieu Linh."
 msgstr ""
+"[[Smart Phones|https://thenounproject.com/term/smartphone/25790]]: Creative "
+"Commons — Atribución, por Pham Thi Dieu Linh."
 
 #. type: Bullet: '  - '
 msgid ""
