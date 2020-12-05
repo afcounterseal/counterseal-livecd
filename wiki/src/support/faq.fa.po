@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2020-08-19 20:37+0000\n"
-"PO-Revision-Date: 2020-08-19 08:30+0000\n"
+"POT-Creation-Date: 2020-11-12 03:51+0000\n"
+"PO-Revision-Date: 2020-09-05 06:30+0000\n"
 "Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: Persian <http://weblate.451f.org:8889/projects/tails/faq/fa/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. type: Plain text
 #, no-wrap
@@ -656,64 +656,6 @@ msgstr ""
 
 #. type: Plain text
 #, fuzzy, no-wrap
-#| msgid "Can I view websites using Adobe Flash with Tails?\n"
-msgid "<h2 id=\"flash\">Can I view websites using Adobe Flash with Tails?</h2>\n"
-msgstr "آیا می‌توانم با تیلز از تارنماهایی که از ادوبی فلش استفاده می‌کنند بازدید کنم؟\n"
-
-#. type: Plain text
-msgid "Adobe Flash Player is not included in Tails for several reasons:"
-msgstr "ادوبی فلش پلیر به دلایل مختلف در تیلز گنجانده نشده:"
-
-#. type: Bullet: '  - '
-msgid ""
-"It is proprietary software which prevents us from legally including it in "
-"Tails."
-msgstr ""
-"یک نرم‌افزار مالکیتی است که در نتیجه ما از نظر قانونی نمی‌توانیم آن را در تیلز "
-"بگنجانیم."
-
-#. type: Bullet: '  - '
-msgid "It is closed source and so we have no idea of what it really does."
-msgstr "کدبسته است و نمی‌دانیم دقیقاً چه می‌کند."
-
-#. type: Bullet: '  - '
-msgid "It has a very long history of serious security vulnerabilities."
-msgstr "ید طولایی در آسیب‌پذیری‌های امنیتی جدی دارد."
-
-#. type: Bullet: '  - '
-msgid ""
-"It is known to favor privacy invasive technologies such as [[!wikipedia "
-"Local_shared_object]]."
-msgstr ""
-"مشهور است به ایجاد فرصت برای فناوری‌هایی که حریم خصوصی را به مخاطره "
-"می‌اندازند، از جمله [[!wikipedia Local_shared_object]]."
-
-#. type: Bullet: '  - '
-msgid "Adobe only maintains their GNU/Linux Flash plugin for Google Chrome."
-msgstr "ادوبی افزایهٔ فلش گنو/لینوکس خود را تنها برای گوگل کروم نگهداری می‌کند."
-
-#. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "We have considered including open-source alternative software to Adobe "
-#| "Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but it is not "
-#| "the case yet, see [[!tails_ticket 5363]]."
-msgid ""
-"We have considered including open-source alternative software to Adobe "
-"Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but rejected "
-"them since they are not mature enough and Flash is less and less used anyway."
-msgstr ""
-"ما استفاده از از نرم‌افزارهای جایگزین کدباز مانند [[جی‌نش](http://www.gnu.org/"
-"software/gnash/) به جای ادوبی فلش را در نظر گرفته‌ایم، اما هنوز امکانش میسر "
-"نشده است. رجوع کنید به [[!tails_ticket 5363]]."
-
-#. type: Plain text
-#, no-wrap
-msgid "But you can already watch HTML5 videos with <span class=\"application\">Tor Browser</span>.\n"
-msgstr "اما می‌توانید با <span class=\"application\">مرورگر تور</span> ویدیوهای اچ‌تی‌ام‌ال۵ را ببینید.\n"
-
-#. type: Plain text
-#, fuzzy, no-wrap
 #| msgid "How to analyse the results of online anonymity tests?\n"
 msgid "<h2 id=\"anonymity-test\">How to analyse the results of online anonymity tests?</h2>\n"
 msgstr "چگونه نتایج آزمون‌های ناشناسی آنلاین را تحلیل کنیم؟\n"
@@ -813,11 +755,9 @@ msgstr "آیا می‌توانم تنظیمات اختصاصی خود را ذخ�
 #. type: Plain text
 #, no-wrap
 msgid ""
-"<em>&hellip; like language, keyboard layout, background image, toolbar position,\n"
-"browser settings, touchpad preferences, etc.</em>\n"
+"<em>&hellip; like Tor Browser preferences, Tor configuration, desktop\n"
+"background, mouse and touchpad settings, etc.</em>\n"
 msgstr ""
-"<em>&hellip; مانند زبان، جانمایی صفحه‌کلید، تصویر پس‌زمینه، وضعیت نوار ابزار،\n"
-"تنظیمات مرورگر، ترجیحات صفحه‌لمسی و غیره.</em>\n"
 
 #. type: Plain text
 #, fuzzy
@@ -827,10 +767,10 @@ msgstr ""
 #| "different working sessions. See the list of existing [[persistent "
 #| "features|doc/first_steps/persistence/configure#features]]."
 msgid ""
-"By default Tails does not save anything from one working session to "
-"another.  Only the Persistent Storage allows you to reuse data across "
-"different working sessions. See the list of existing [[features of the "
-"Persistent Storage|doc/first_steps/persistence/configure#features]]."
+"By default Tails does not save anything from one session to another.  Only "
+"the Persistent Storage allows you to reuse data across different Tails "
+"sessions. See the [[list of features of the Persistent Storage|doc/"
+"first_steps/persistence/configure#features]]."
 msgstr ""
 "تیلز به طور پیش‌فرض هیچ تغییری را از یک نشست کاری ذخیره نمی‌کند که در نشست‌های "
 "کاری دیگر از آن استفاده کند. تنها درایو مانا به شما اجازه می‌دهد که از "
@@ -846,7 +786,7 @@ msgstr ""
 #| "persistence. Any bit of help [[is welcome|contribute/how/code]]."
 msgid ""
 "We are frequently requested to add new features to the Persistent Storage "
-"but we are usually busy working on other priorities. See our"
+"but we are usually busy working on other priorities. See the"
 msgstr ""
 "از ما مدام خواسته می‌شود که ویژگی‌های مانای جدید اضافه کنیم، اما معمولاً مشغول "
 "کار روی اولویت‌های دیگر هستیم. رجوع کنید به [درخواست‌های باز](https://labs."
@@ -856,8 +796,7 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "groups/tails/-/issues?scope=all&utf8=✓&state=opened&label_name%5B%5D=C"
-"%3APersistence desc=\"open issues\"]] about the Persistent Storage. Any bit "
-"of help [[is welcome|contribute/how/code]]."
+"%3APersistence desc=\"list of issues about the Persistent Storage\"]]."
 msgstr ""
 
 #. type: Plain text
@@ -1349,7 +1288,7 @@ msgstr ""
 "about/contact#tails-dev]]."
 
 #. type: Plain text
-#, fuzzy, no-wrap
+#, no-wrap
 msgid "<div class=\"tip\">\n"
 msgstr "<div class=\"tip\">\n"
 
@@ -1426,7 +1365,7 @@ msgstr ""
 #| "slow>."
 msgid ""
 "It harms the network, see: <https://blog.torproject.org/why-tor-slow-and-"
-"what-were-going-do-about-it."
+"what-were-going-do-about-it>."
 msgstr ""
 "این کار باعث وارد شدن آسیب به شبکه می‌شود؛ رجوع کنید به <https://blog."
 "torproject.org/blog/why-tor-is-slow>."
@@ -1774,6 +1713,72 @@ msgid ""
 msgstr ""
 "برای جزییات بیشتر رجوع کنید به [[!wikipedia Linux_malware desc=\"صفحهٔ "
 "ویکی‌پدیا در مورد بدافزارهای لینوکس\"]]."
+
+#~ msgid ""
+#~ "<em>&hellip; like language, keyboard layout, background image, toolbar "
+#~ "position,\n"
+#~ "browser settings, touchpad preferences, etc.</em>\n"
+#~ msgstr ""
+#~ "<em>&hellip; مانند زبان، جانمایی صفحه‌کلید، تصویر پس‌زمینه، وضعیت نوار "
+#~ "ابزار،\n"
+#~ "تنظیمات مرورگر، ترجیحات صفحه‌لمسی و غیره.</em>\n"
+
+#, fuzzy
+#~| msgid "Can I view websites using Adobe Flash with Tails?\n"
+#~ msgid ""
+#~ "<h2 id=\"flash\">Can I view websites using Adobe Flash with Tails?</h2>\n"
+#~ msgstr ""
+#~ "آیا می‌توانم با تیلز از تارنماهایی که از ادوبی فلش استفاده می‌کنند بازدید "
+#~ "کنم؟\n"
+
+#~ msgid "Adobe Flash Player is not included in Tails for several reasons:"
+#~ msgstr "ادوبی فلش پلیر به دلایل مختلف در تیلز گنجانده نشده:"
+
+#~ msgid ""
+#~ "It is proprietary software which prevents us from legally including it in "
+#~ "Tails."
+#~ msgstr ""
+#~ "یک نرم‌افزار مالکیتی است که در نتیجه ما از نظر قانونی نمی‌توانیم آن را در "
+#~ "تیلز بگنجانیم."
+
+#~ msgid "It is closed source and so we have no idea of what it really does."
+#~ msgstr "کدبسته است و نمی‌دانیم دقیقاً چه می‌کند."
+
+#~ msgid "It has a very long history of serious security vulnerabilities."
+#~ msgstr "ید طولایی در آسیب‌پذیری‌های امنیتی جدی دارد."
+
+#~ msgid ""
+#~ "It is known to favor privacy invasive technologies such as [[!wikipedia "
+#~ "Local_shared_object]]."
+#~ msgstr ""
+#~ "مشهور است به ایجاد فرصت برای فناوری‌هایی که حریم خصوصی را به مخاطره "
+#~ "می‌اندازند، از جمله [[!wikipedia Local_shared_object]]."
+
+#~ msgid "Adobe only maintains their GNU/Linux Flash plugin for Google Chrome."
+#~ msgstr ""
+#~ "ادوبی افزایهٔ فلش گنو/لینوکس خود را تنها برای گوگل کروم نگهداری می‌کند."
+
+#, fuzzy
+#~| msgid ""
+#~| "We have considered including open-source alternative software to Adobe "
+#~| "Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but it is "
+#~| "not the case yet, see [[!tails_ticket 5363]]."
+#~ msgid ""
+#~ "We have considered including open-source alternative software to Adobe "
+#~ "Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but rejected "
+#~ "them since they are not mature enough and Flash is less and less used "
+#~ "anyway."
+#~ msgstr ""
+#~ "ما استفاده از از نرم‌افزارهای جایگزین کدباز مانند [[جی‌نش](http://www.gnu."
+#~ "org/software/gnash/) به جای ادوبی فلش را در نظر گرفته‌ایم، اما هنوز امکانش "
+#~ "میسر نشده است. رجوع کنید به [[!tails_ticket 5363]]."
+
+#~ msgid ""
+#~ "But you can already watch HTML5 videos with <span class=\"application"
+#~ "\">Tor Browser</span>.\n"
+#~ msgstr ""
+#~ "اما می‌توانید با <span class=\"application\">مرورگر تور</span> ویدیوهای "
+#~ "اچ‌تی‌ام‌ال۵ را ببینید.\n"
 
 #, fuzzy
 #~| msgid "Tails project\n"
@@ -2224,20 +2229,20 @@ msgstr ""
 #~ "restart Tails every time that you want to use a different contextual\n"
 #~ "identity. The\n"
 #~ "[[<span class=\"guilabel\">New Identity</span> feature of <span class="
-#~ "\"application\">Vidalia</span>|doc/anonymous_internet/"
-#~ "vidalia#new-identity]]\n"
+#~ "\"application\">Vidalia</span>|doc/anonymous_internet/vidalia#new-"
+#~ "identity]]\n"
 #~ "forces Tor to use new circuits but only for new connections and the\n"
 #~ "[[<span class=\"guilabel\">New Identity</span> of <span class="
-#~ "\"application\">Tor Browser</span>|doc/anonymous_internet/"
-#~ "Tor_Browser#new-identity]]\n"
+#~ "\"application\">Tor Browser</span>|doc/anonymous_internet/Tor_Browser#new-"
+#~ "identity]]\n"
 #~ "is limited to the browser.\n"
 #~ msgstr ""
 #~ "در [[صفحهٔ هشدار|doc/about/warning#identities]] پیشنهاد کرده‌ایم\n"
 #~ "هر بار که قصد استفاده از هویت جدیدی دارید تیلز را \n"
 #~ "دوباره راه‌اندازی کنید.\n"
 #~ "[[ویژگی <span class=\"guilabel\">هویت جدید</span> <span class="
-#~ "\"application\">ویدالیا</span>|doc/anonymous_internet/"
-#~ "vidalia#new-identity]]\n"
+#~ "\"application\">ویدالیا</span>|doc/anonymous_internet/vidalia#new-"
+#~ "identity]]\n"
 #~ "تور را مجبور به استفاده از مدارهای جدید می‌کند، اما تنها برای اتصال‌های "
 #~ "جدید\n"
 #~ "و [[<span class=\"guilabel\">هویت جدید</span> <span class=\"application"

@@ -4,12 +4,17 @@ channel: stable
 initial-install-version: 4.0~rc1
 product-name: Tails
 upgrades:
-- details-url: https://tails.boum.org/news/version_4.10/
+- details-url: https://tails.boum.org/news/version_4.13/
   type: major
   upgrade-paths:
   - target-files:
-    - sha256: 611133569eeb95d6b4eb06c5c0301cc6bb21254d463d656c8a0ad7188688666a
-      size: 1217341440
-      url: http://dl.amnesia.boum.org/tails/stable/tails-amd64-4.10/tails-amd64-4.10.iso
+    - sha256: 880d926c4aef6ac27bc775f1cd99ccdd719499ced982449a31aa0a660f0546a0
+      size: 1176215552
+      url: http://dl.amnesia.boum.org/tails/stable/tails-amd64-4.13/tails-amd64-4.13.iso
     type: full
-  version: '4.10'
+  - target-files:
+    - sha256: 64bbbbb4c9f28de40b5125150e9aa710bece1cd61108784f7868370be927da09
+      size: 638218240
+      url: http://dl.amnesia.boum.org/tails/stable/iuk/v2/Tails_amd64_4.0~rc1_to_4.13.iuk
+    type: incremental
+  version: '4.13'

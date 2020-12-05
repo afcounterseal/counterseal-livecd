@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2020-08-19 20:37+0000\n"
-"PO-Revision-Date: 2020-04-06 10:00+0000\n"
-"Last-Translator: drebs <drebs@riseup.net>\n"
+"POT-Creation-Date: 2020-11-12 03:51+0000\n"
+"PO-Revision-Date: 2020-10-18 15:31+0000\n"
+"Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. type: Plain text
 #, no-wrap
@@ -228,7 +228,7 @@ msgstr "Compatibilidade de hardware\n"
 
 #. type: Plain text
 msgid "See also:"
-msgstr ""
+msgstr "Veja também:"
 
 #. type: Plain text
 msgid ""
@@ -624,68 +624,6 @@ msgstr ""
 
 #. type: Plain text
 #, fuzzy, no-wrap
-#| msgid "Can I view websites using Adobe Flash with Tails?\n"
-msgid "<h2 id=\"flash\">Can I view websites using Adobe Flash with Tails?</h2>\n"
-msgstr "Posso ver sites que usam Adobe Flash com Tails?\n"
-
-#. type: Plain text
-msgid "Adobe Flash Player is not included in Tails for several reasons:"
-msgstr "Adobe Flash Player não é incluído no Tails por diversas razões:"
-
-#. type: Bullet: '  - '
-msgid ""
-"It is proprietary software which prevents us from legally including it in "
-"Tails."
-msgstr ""
-"É um software proprietário, o que nos impede de incluí-lo de forma legal no "
-"Tails."
-
-#. type: Bullet: '  - '
-msgid "It is closed source and so we have no idea of what it really does."
-msgstr ""
-"Seu código fonte é fechado e portanto não temos ideia do que ele realmente "
-"faz."
-
-#. type: Bullet: '  - '
-msgid "It has a very long history of serious security vulnerabilities."
-msgstr "Tem uma história muito longa de sérias vulnerabilidades de segurança."
-
-#. type: Bullet: '  - '
-msgid ""
-"It is known to favor privacy invasive technologies such as [[!wikipedia "
-"Local_shared_object]]."
-msgstr ""
-"Ele é conhecido por favorecer tecnologias invasivas à privacidade tais como "
-"[[!wikipedia Local_shared_object]]."
-
-#. type: Bullet: '  - '
-msgid "Adobe only maintains their GNU/Linux Flash plugin for Google Chrome."
-msgstr ""
-"Adobe somente mantém seu plugin Flash para GNU/Linux para o Google Chrome."
-
-#. type: Plain text
-#, fuzzy
-#| msgid ""
-#| "We have considered including open-source alternative software to Adobe "
-#| "Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but it is not "
-#| "the case yet, see [[!tails_ticket 5363]]."
-msgid ""
-"We have considered including open-source alternative software to Adobe "
-"Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but rejected "
-"them since they are not mature enough and Flash is less and less used anyway."
-msgstr ""
-"Nós consideramos a inclusão de alternativas open-source para o Adobe Flash, "
-"como o [Gnash](http://www.gnu.org/software/gnash/), mas este ainda não é o "
-"caso, veja [[!tails_ticket 5363]]."
-
-#. type: Plain text
-#, fuzzy, no-wrap
-#| msgid "But you can already watch HTML5 videos with the Tor browser."
-msgid "But you can already watch HTML5 videos with <span class=\"application\">Tor Browser</span>.\n"
-msgstr "Mas você já pode assistir vídeos em HTML5 com o navegador Tor."
-
-#. type: Plain text
-#, fuzzy, no-wrap
 #| msgid "How to analyse the results of online anonymity tests?\n"
 msgid "<h2 id=\"anonymity-test\">How to analyse the results of online anonymity tests?</h2>\n"
 msgstr "Como analisar os resultados dos testes online de anonimidade?\n"
@@ -771,11 +709,9 @@ msgstr "Posso salvar minhas configurações específicas?\n"
 #. type: Plain text
 #, no-wrap
 msgid ""
-"<em>&hellip; like language, keyboard layout, background image, toolbar position,\n"
-"browser settings, touchpad preferences, etc.</em>\n"
+"<em>&hellip; like Tor Browser preferences, Tor configuration, desktop\n"
+"background, mouse and touchpad settings, etc.</em>\n"
 msgstr ""
-"<em>&hellip; tais como idioma, layout de teclado, imagem de fundo de tela, posição\n"
-"da barra de ferramentas, configurações do navegador, preferências do touchpad, etc.</em>\n"
 
 #. type: Plain text
 #, fuzzy
@@ -785,10 +721,10 @@ msgstr ""
 #| "different working sessions. See the list of existing [[persistent "
 #| "features|doc/first_steps/persistence/configure#features]]."
 msgid ""
-"By default Tails does not save anything from one working session to "
-"another.  Only the Persistent Storage allows you to reuse data across "
-"different working sessions. See the list of existing [[features of the "
-"Persistent Storage|doc/first_steps/persistence/configure#features]]."
+"By default Tails does not save anything from one session to another.  Only "
+"the Persistent Storage allows you to reuse data across different Tails "
+"sessions. See the [[list of features of the Persistent Storage|doc/"
+"first_steps/persistence/configure#features]]."
 msgstr ""
 "Por padrão, o Tails não salva nada de uma sessão de trabalho para a oura. "
 "Apenas o volume persistente permite que você reutilize dados através de "
@@ -804,7 +740,7 @@ msgstr ""
 #| "persistence. Any bit of help [[is welcome|contribute/how/code]]."
 msgid ""
 "We are frequently requested to add new features to the Persistent Storage "
-"but we are usually busy working on other priorities. See our"
+"but we are usually busy working on other priorities. See the"
 msgstr ""
 "Frequentemente recebemos pedidos de inclusão de novas funcionalidades de "
 "persistência, mas em geral estamos ocupados trabalhando em outras "
@@ -815,8 +751,7 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "groups/tails/-/issues?scope=all&utf8=✓&state=opened&label_name%5B%5D=C"
-"%3APersistence desc=\"open issues\"]] about the Persistent Storage. Any bit "
-"of help [[is welcome|contribute/how/code]]."
+"%3APersistence desc=\"list of issues about the Persistent Storage\"]]."
 msgstr ""
 
 #. type: Plain text
@@ -1371,7 +1306,7 @@ msgstr ""
 #| "slow>."
 msgid ""
 "It harms the network, see: <https://blog.torproject.org/why-tor-slow-and-"
-"what-were-going-do-about-it."
+"what-were-going-do-about-it>."
 msgstr ""
 "Isto compromete a rede, veja <https://blog.torproject.org/blog/why-tor-is-"
 "slow>."
@@ -1729,6 +1664,74 @@ msgid ""
 "See the [[!wikipedia Linux_malware desc=\"Wikipedia page on Linux malware"
 "\"]] for further details."
 msgstr ""
+
+#~ msgid ""
+#~ "<em>&hellip; like language, keyboard layout, background image, toolbar "
+#~ "position,\n"
+#~ "browser settings, touchpad preferences, etc.</em>\n"
+#~ msgstr ""
+#~ "<em>&hellip; tais como idioma, layout de teclado, imagem de fundo de "
+#~ "tela, posição\n"
+#~ "da barra de ferramentas, configurações do navegador, preferências do "
+#~ "touchpad, etc.</em>\n"
+
+#, fuzzy
+#~| msgid "Can I view websites using Adobe Flash with Tails?\n"
+#~ msgid ""
+#~ "<h2 id=\"flash\">Can I view websites using Adobe Flash with Tails?</h2>\n"
+#~ msgstr "Posso ver sites que usam Adobe Flash com Tails?\n"
+
+#~ msgid "Adobe Flash Player is not included in Tails for several reasons:"
+#~ msgstr "Adobe Flash Player não é incluído no Tails por diversas razões:"
+
+#~ msgid ""
+#~ "It is proprietary software which prevents us from legally including it in "
+#~ "Tails."
+#~ msgstr ""
+#~ "É um software proprietário, o que nos impede de incluí-lo de forma legal "
+#~ "no Tails."
+
+#~ msgid "It is closed source and so we have no idea of what it really does."
+#~ msgstr ""
+#~ "Seu código fonte é fechado e portanto não temos ideia do que ele "
+#~ "realmente faz."
+
+#~ msgid "It has a very long history of serious security vulnerabilities."
+#~ msgstr ""
+#~ "Tem uma história muito longa de sérias vulnerabilidades de segurança."
+
+#~ msgid ""
+#~ "It is known to favor privacy invasive technologies such as [[!wikipedia "
+#~ "Local_shared_object]]."
+#~ msgstr ""
+#~ "Ele é conhecido por favorecer tecnologias invasivas à privacidade tais "
+#~ "como [[!wikipedia Local_shared_object]]."
+
+#~ msgid "Adobe only maintains their GNU/Linux Flash plugin for Google Chrome."
+#~ msgstr ""
+#~ "Adobe somente mantém seu plugin Flash para GNU/Linux para o Google Chrome."
+
+#, fuzzy
+#~| msgid ""
+#~| "We have considered including open-source alternative software to Adobe "
+#~| "Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but it is "
+#~| "not the case yet, see [[!tails_ticket 5363]]."
+#~ msgid ""
+#~ "We have considered including open-source alternative software to Adobe "
+#~ "Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but rejected "
+#~ "them since they are not mature enough and Flash is less and less used "
+#~ "anyway."
+#~ msgstr ""
+#~ "Nós consideramos a inclusão de alternativas open-source para o Adobe "
+#~ "Flash, como o [Gnash](http://www.gnu.org/software/gnash/), mas este ainda "
+#~ "não é o caso, veja [[!tails_ticket 5363]]."
+
+#, fuzzy
+#~| msgid "But you can already watch HTML5 videos with the Tor browser."
+#~ msgid ""
+#~ "But you can already watch HTML5 videos with <span class=\"application"
+#~ "\">Tor Browser</span>.\n"
+#~ msgstr "Mas você já pode assistir vídeos em HTML5 com o navegador Tor."
 
 #, fuzzy
 #~| msgid "Tails project\n"
@@ -2182,12 +2185,12 @@ msgstr ""
 #~ "restart Tails every time that you want to use a different contextual\n"
 #~ "identity. The\n"
 #~ "[[<span class=\"guilabel\">New Identity</span> feature of <span class="
-#~ "\"application\">Vidalia</span>|doc/anonymous_internet/"
-#~ "vidalia#new-identity]]\n"
+#~ "\"application\">Vidalia</span>|doc/anonymous_internet/vidalia#new-"
+#~ "identity]]\n"
 #~ "forces Tor to use new circuits but only for new connections and the\n"
 #~ "[[<span class=\"guilabel\">New Identity</span> of <span class="
-#~ "\"application\">Tor Browser</span>|doc/anonymous_internet/"
-#~ "Tor_Browser#new-identity]]\n"
+#~ "\"application\">Tor Browser</span>|doc/anonymous_internet/Tor_Browser#new-"
+#~ "identity]]\n"
 #~ "is limited to the browser.\n"
 #~ msgstr ""
 #~ "Em nossa [[página de advertência|doc/about/warning#identities]] nos "

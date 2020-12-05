@@ -1,2 +1,2 @@
-5d6d81db04e0a8c536c3d5e13c935c52318bac7ca44089e031c1bf7c54d66f4e  tor-browser-linux64-9.5.4_en-US.tar.xz
-1f9634a27f2c18cbe3e7a354713e201df2e558bdfef4a5ed028552b075cd87b7  langpacks-tor-browser-linux64-9.5.4.tar.xz
+bca77c17f087f0862296b72d6ad9e146bca4df31b7cc62237e94d4647a1ab0b3  tor-browser-linux64-10.0.5_en-US.tar.xz
+f93e60297ab0eeb99e6a471ce26528ae12a7e5086d6da34cec872bd79c453c42  langpacks-tor-browser-linux64-10.0.5.tar.xz

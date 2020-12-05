@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2020-07-09 15:49+0000\n"
-"PO-Revision-Date: 2018-11-08 16:01+0100\n"
-"Last-Translator: drebs <drebs@riseup.net>\n"
+"POT-Creation-Date: 2020-11-20 10:18+0000\n"
+"PO-Revision-Date: 2020-09-28 13:30+0000\n"
+"Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: Portuguese <http://translate.tails.boum.org/projects/tails/"
 "support/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.10.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. type: Plain text
 #, no-wrap
@@ -60,16 +60,6 @@ msgstr "Guias que explicam os usos típicos do Tails"
 #. type: Plain text
 msgid "[[Visit Tails documentation|doc]]"
 msgstr "[[Visite a documentação|doc]]"
-
-#. type: Title =
-#, no-wrap
-msgid "Learn how to use Tails"
-msgstr "Aprenda como usar o Tails"
-
-#. type: Plain text
-#, no-wrap
-msgid "[[!inline pages=\"support/learn/intro.inline\" raw=\"yes\" sort=\"age\"]]\n"
-msgstr "[[!inline pages=\"support/learn/intro.inline.pt\" raw=\"yes\" sort=\"age\"]]\n"
 
 #. type: Title =
 #, no-wrap
@@ -201,6 +191,18 @@ msgstr "  <h1>Entre em contato</h1>\n"
 #, no-wrap
 msgid "  [[!inline pages=\"support/talk\" raw=\"yes\" sort=\"age\"]]\n"
 msgstr "  [[!inline pages=\"support/talk.pt\" raw=\"yes\" sort=\"age\"]]\n"
+
+#~ msgid "<!--\n"
+#~ msgstr "<!--\n"
+
+#~ msgid "Learn how to use Tails"
+#~ msgstr "Aprenda como usar o Tails"
+
+#~ msgid "[[!inline pages=\"support/learn/intro.inline\" raw=\"yes\" sort=\"age\"]]\n"
+#~ msgstr "[[!inline pages=\"support/learn/intro.inline.pt\" raw=\"yes\" sort=\"age\"]]\n"
+
+#~ msgid "-->\n"
+#~ msgstr "-->\n"
 
 #, fuzzy
 #~| msgid ""

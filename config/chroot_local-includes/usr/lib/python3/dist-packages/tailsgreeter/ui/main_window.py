@@ -19,12 +19,13 @@ import locale
 import logging
 from typing import TYPE_CHECKING
 import gi
+import glob
 import os
 import sh
 
 import tailsgreeter                                             # NOQA: E402
 import tailsgreeter.config                                      # NOQA: E402
-from tailsgreeter.config import settings_dir, persistent_settings_dir, unsafe_browser_setting_filename
+from tailsgreeter.config import settings_dir, persistent_settings_dir, admin_password_path
 import tailsgreeter.utils                                       # NOQA: E402
 from tailsgreeter.settings import SettingNotFoundError
 from tailsgreeter.translatable_window import TranslatableWindow
@@ -350,11 +351,16 @@ class GreeterMainWindow(Gtk.Window, TranslatableWindow):
         return False
 
     def cb_button_start_clicked(self, widget, user_data=None):
-        # Cherry-pick the settings we want to persist
-        # (currently only the Unsafe Browser setting)
-        sh.cp("-a",
-              os.path.join(settings_dir, unsafe_browser_setting_filename),
-              persistent_settings_dir)
+        for setting in glob.glob(os.path.join(settings_dir, 'tails.*')):
+            sh.cp("-a", setting, persistent_settings_dir)
+        try:
+            self.greeter.admin_setting.load()
+        except SettingNotFoundError:
+            # The admin password is not set, so we have to make sure that
+            # the file also doesn't exist in the persistent directory,
+            # in case that the user disabled a persisted admin password.
+            pw_filename = os.path.basename(admin_password_path)
+            sh.rm("-f", os.path.join(persistent_settings_dir, pw_filename))
 
         self.greeter.login()
         return False

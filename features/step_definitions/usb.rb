@@ -134,7 +134,7 @@ end
 
 When /^I start Tails Installer$/ do
   @installer_log_path = '/tmp/tails-installer.log'
-  command = "/usr/bin/tails-installer --verbose > #{@installer_log_path} 2>&1"
+  command = "/usr/local/bin/tails-installer --verbose > #{@installer_log_path} 2>&1"
   step "I run \"#{command}\" in GNOME Terminal"
   @installer = Dogtail::Application.new('tails-installer')
   @installer.child('Tails Installer', roleName: 'frame')
@@ -534,7 +534,7 @@ Then /^all persistent filesystems have safe access rights$/ do
     fs_perms = $vm.execute("stat -c %a #{mountpoint}").stdout.chomp
     assert_equal('root', fs_owner)
     assert_equal('root', fs_group)
-    assert_equal('775', fs_perms)
+    assert_equal('770', fs_perms)
   end
 end
 
@@ -864,8 +864,8 @@ Then /^I am proposed to install an incremental upgrade to version (.+)$/ do |ver
   failure_pic = 'TailsUpgraderFailure.png'
   success_pic = "TailsUpgraderUpgradeTo#{version}.png"
   retry_tor(recovery_proc) do
-    match, = @screen.wait_any([success_pic, failure_pic], 2 * 60)
-    assert_equal(success_pic, match)
+    found_pic = @screen.wait_any([success_pic, failure_pic], 2 * 60)[:found_pattern]
+    assert_equal(success_pic, found_pic)
   end
 end
 
@@ -886,8 +886,8 @@ Then /^I can successfully install the incremental upgrade to version (.+)$/ do |
   failure_pic = 'TailsUpgraderFailure.png'
   success_pic = 'TailsUpgraderDownloadComplete.png'
   retry_tor(recovery_proc) do
-    match, = @screen.wait_any([success_pic, failure_pic], 2 * 60)
-    assert_equal(success_pic, match)
+    found_pic = @screen.wait_any([success_pic, failure_pic], 2 * 60)[:found_pattern]
+    assert_equal(success_pic, found_pic)
   end
   @screen.click('TailsUpgraderApplyUpgradeButton.png')
   @screen.wait('TailsUpgraderDone.png', 60)
@@ -1133,5 +1133,72 @@ Given /^I install a Tails USB image to the (\d+) MiB disk with GNOME Disks$/ do 
   job = disks.child('Job', roleName: 'label', showingOnly: true)
   try_for(60) do
     !job.showing
+  end
+end
+
+Given /^I set all Greeter options to non-default values$/ do
+  # We sleep between each option to give the UI time to update,
+  # otherwise we might detect the + button or language entry before it
+  # has been readjusted, so while we try to click it, it moves so we
+  # miss it.
+  step 'I enable the specific Tor configuration option'
+  sleep 2
+  step 'I allow the Unsafe Browser to be started'
+  sleep 2
+  step 'I disable MAC spoofing in Tails Greeter'
+  sleep 2
+  step 'I set an administration password'
+  sleep 2
+  # We do this one last so we don't have to worry about translations
+  # for the above steps.
+  step 'I set the language to German'
+end
+
+Then /^all Greeter options are set to (non-)?default values$/ do |non_default|
+  settings = $vm.execute_successfully(
+    'grep -h "^TAILS_" /var/lib/gdm3/settings/tails.* | ' \
+    'grep -v "^TAILS_.*PASSWORD" | LC_ALL=C sort'
+  ).stdout
+  if non_default
+    expected = <<~EXPECTED
+      TAILS_FORMATS=de_DE
+      TAILS_LOCALE_NAME=de_DE
+      TAILS_MACSPOOF_ENABLED=false
+      TAILS_NETCONF=obstacle
+      TAILS_UNSAFE_BROWSER_ENABLED=true
+      TAILS_XKBLAYOUT=de
+      TAILS_XKBMODEL=pc105
+      TAILS_XKBVARIANT=
+    EXPECTED
+    $vm.execute_successfully(
+      'grep "^TAILS_USER_PASSWORD=\'.\+\'$" ' \
+      '/var/lib/gdm3/settings/tails.password'
+    )
+    $vm.execute_successfully(
+      'grep "^TAILS_PASSWORD_HASH_FUNCTION=SHA512$" ' \
+      '/var/lib/gdm3/settings/tails.password'
+    )
+  else
+    expected = <<~EXPECTED
+      TAILS_FORMATS=en_US
+      TAILS_LOCALE_NAME=en_US
+      TAILS_MACSPOOF_ENABLED=true
+      TAILS_NETCONF=direct
+      TAILS_UNSAFE_BROWSER_ENABLED=false
+      TAILS_XKBLAYOUT=us
+      TAILS_XKBMODEL=pc105
+      TAILS_XKBVARIANT=
+    EXPECTED
+    assert(!$vm.file_exist?('/var/lib/gdm3/settings/tails.password'))
+  end
+  assert_equal(expected, settings)
+end
+
+Then /^(no )?persistent Greeter options were restored$/ do |no|
+  if no
+    assert(!@screen.exists('TailsGreeterPersistentSettingsRestored.png'))
+  else
+    $language = 'German'
+    @screen.wait('TailsGreeterPersistentSettingsRestored.png', 10)
   end
 end

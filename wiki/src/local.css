@@ -53,6 +53,9 @@ Table of Content:
 /* Load RTL stylesheet */
 @import url("local.rtl.css");
 
+/* Load stylesheet for donation campaign */
+@import url("donate/banner.css");
+
 /* Fonts */
 
 @font-face { font-family: "Source Sans Pro Regular"; src: url("lib/SourceSansPro-Regular.ttf"); }
@@ -279,30 +282,30 @@ table.img, table.img td {
   border: none;
 }
 
-table.img caption {
+table.img caption, .image .caption {
   font-size: 90%;
   font-style: italic;
+  color: #58595b;
+  margin: 1em 0;
+  max-width: 100%;
+}
+
+.image {
+  text-align: center;
 }
 
 /* Forms */
 
-form.donation label {
-    margin-left: 0.5em;
-    margin-right: 1em;
+label {
+  display: block;
+  margin-bottom: 0;
 }
 
-form.donation br {
-    margin-bottom: 0.5em;
-}
-
-form.donation {
-    margin-left: 1em;
-    margin-top: -1em;
-    margin-bottom: 2em;
-}
-
-label.block {
-    margin-top: 1em;
+input[type="checkbox"], input[type="radio"] {
+  margin-right: 5px !important;
+  vertical-align: bottom;
+  position: relative;
+  top: -4px;
 }
 
 /* Layout */
@@ -509,7 +512,7 @@ body.pt .donate .pt {
   border-bottom: 5px solid #276426;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 810px) {
   .topbar a, .topbar .selflink {
     padding-top: 8px;
     margin: 0 12px;
@@ -1006,7 +1009,7 @@ div.bug, div.caution, div.next, div.note, div.tip, div.trophy {
   background-color: #FFFFF0;
   border: 1px solid #E0E0DF;
   border-radius: 4px;
-  padding: 1.35em 6px 0em;
+  padding: 1.5em 6px 0em;
   background-position: 6px 0.5em;
   background-repeat: no-repeat;
   min-height: 48px;
@@ -1035,6 +1038,14 @@ div.trophy {
 
 div.bug pre, div.caution pre, div.next pre, div.note pre, div.tip pre, div.trophy pre {
   max-width: 30em;
+}
+
+div.bug *:first-child, div.caution *:first-child, div.next *:first-child, div.note *:first-child, div.tip *:first-child, div.trophy *:first-child {
+  margin-top: 0;
+}
+
+div.bug *:last-child, div.caution *:last-child, div.next *:last-child, div.note *:last-child, div.tip *:last-child, div.trophy *:last-child {
+  margin-bottom: 1.5em;
 }
 
 /* Code, preformatted text, and command lines */
@@ -1250,10 +1261,15 @@ div#highlight p {
   margin: 0 0 8px;
   padding: 0;
   font-size: 14px;
+  min-height: 3em;
 }
 
 .chart-key-list li div {
   display: inline-block;
+}
+
+.chart-key-list li p {
+  margin: 5px 0 20px;
 }
 
 .key-label:before {
@@ -1276,10 +1292,20 @@ div#highlight p {
   font-weight: bold;
 }
 
-.blue .key-label:before { background-color: #5da5da; }
+/* Accessible color palette */
+
+.blue   .key-label:before { background-color: #5da5da; }
 .orange .key-label:before { background-color: #faa43a; }
-.green .key-label:before { background-color: #60bd68; }
-.pink .key-label:before { background-color: #f17cb0; }
-.brown .key-label:before { background-color: #b2912f; }
+.green  .key-label:before { background-color: #60bd68; }
+.pink   .key-label:before { background-color: #f17cb0; }
+.brown  .key-label:before { background-color: #b2912f; }
 .purple .key-label:before { background-color: #b276b2; }
 .yellow .key-label:before { background-color: #decf3f; }
+
+/* Tails color palette */
+
+.purple-1 .key-label:before { background-color: #7a478b; }
+.purple-2 .key-label:before { background-color: #9c6bad; }
+.purple-3 .key-label:before { background-color: #af97c7; }
+.green    .key-label:before { background-color: #53b351; }
+.gray     .key-label:before { background-color: #dadbdc; }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2020-08-19 20:37+0000\n"
+"POT-Creation-Date: 2020-11-12 03:51+0000\n"
 "PO-Revision-Date: 2018-10-26 13:27+0000\n"
 "Last-Translator: Weblate Admin <admin@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -479,51 +479,6 @@ msgstr ""
 
 #. type: Plain text
 #, no-wrap
-msgid "<h2 id=\"flash\">Can I view websites using Adobe Flash with Tails?</h2>\n"
-msgstr ""
-
-#. type: Plain text
-msgid "Adobe Flash Player is not included in Tails for several reasons:"
-msgstr ""
-
-#. type: Bullet: '  - '
-msgid ""
-"It is proprietary software which prevents us from legally including it in "
-"Tails."
-msgstr ""
-
-#. type: Bullet: '  - '
-msgid "It is closed source and so we have no idea of what it really does."
-msgstr ""
-
-#. type: Bullet: '  - '
-msgid "It has a very long history of serious security vulnerabilities."
-msgstr ""
-
-#. type: Bullet: '  - '
-msgid ""
-"It is known to favor privacy invasive technologies such as [[!wikipedia "
-"Local_shared_object]]."
-msgstr ""
-
-#. type: Bullet: '  - '
-msgid "Adobe only maintains their GNU/Linux Flash plugin for Google Chrome."
-msgstr ""
-
-#. type: Plain text
-msgid ""
-"We have considered including open-source alternative software to Adobe "
-"Flash, such as [Gnash](http://www.gnu.org/software/gnash/), but rejected "
-"them since they are not mature enough and Flash is less and less used anyway."
-msgstr ""
-
-#. type: Plain text
-#, no-wrap
-msgid "But you can already watch HTML5 videos with <span class=\"application\">Tor Browser</span>.\n"
-msgstr ""
-
-#. type: Plain text
-#, no-wrap
 msgid "<h2 id=\"anonymity-test\">How to analyse the results of online anonymity tests?</h2>\n"
 msgstr ""
 
@@ -590,29 +545,28 @@ msgstr ""
 #. type: Plain text
 #, no-wrap
 msgid ""
-"<em>&hellip; like language, keyboard layout, background image, toolbar position,\n"
-"browser settings, touchpad preferences, etc.</em>\n"
+"<em>&hellip; like Tor Browser preferences, Tor configuration, desktop\n"
+"background, mouse and touchpad settings, etc.</em>\n"
 msgstr ""
 
 #. type: Plain text
 msgid ""
-"By default Tails does not save anything from one working session to "
-"another.  Only the Persistent Storage allows you to reuse data across "
-"different working sessions. See the list of existing [[features of the "
-"Persistent Storage|doc/first_steps/persistence/configure#features]]."
+"By default Tails does not save anything from one session to another.  Only "
+"the Persistent Storage allows you to reuse data across different Tails "
+"sessions. See the [[list of features of the Persistent Storage|doc/"
+"first_steps/persistence/configure#features]]."
 msgstr ""
 
 #. type: Plain text
 msgid ""
 "We are frequently requested to add new features to the Persistent Storage "
-"but we are usually busy working on other priorities. See our"
+"but we are usually busy working on other priorities. See the"
 msgstr ""
 
 #. type: Plain text
 msgid ""
 "groups/tails/-/issues?scope=all&utf8=✓&state=opened&label_name%5B%5D=C"
-"%3APersistence desc=\"open issues\"]] about the Persistent Storage. Any bit "
-"of help [[is welcome|contribute/how/code]]."
+"%3APersistence desc=\"list of issues about the Persistent Storage\"]]."
 msgstr ""
 
 #. type: Plain text
@@ -1013,7 +967,7 @@ msgstr ""
 #. type: Bullet: '  - '
 msgid ""
 "It harms the network, see: <https://blog.torproject.org/why-tor-slow-and-"
-"what-were-going-do-about-it."
+"what-were-going-do-about-it>."
 msgstr ""
 
 #. type: Plain text

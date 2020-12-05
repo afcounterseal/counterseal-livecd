@@ -7,15 +7,55 @@ def thunderbird_main
 end
 
 def thunderbird_wizard
-  thunderbird_app.child('Set Up an Existing Email Account', roleName: 'frame')
+  thunderbird_app.child('Set Up Your Existing Email Address', roleName: 'frame')
 end
 
 def thunderbird_inbox
-  folder_view = thunderbird_main.child($config['Icedove']['address'],
+  folder_view = thunderbird_main.child($config['Thunderbird']['address'],
                                        roleName: 'table row').parent
   folder_view.children(roleName: 'table row', recursive: false).find do |e|
     e.name.match(/^Inbox( .*)?$/)
   end
+end
+
+def thunderbird_install_host_snakeoil_ssl_cert
+  # Inspiration:
+  # * https://wiki.mozilla.org/CA:AddRootToFirefox
+  # * https://mike.kaply.com/2015/02/10/installing-certificates-into-firefox/
+  debug_log('Installing host snakeoil SSL certificate')
+  $vm.file_overwrite(
+    '/usr/share/thunderbird/defaults/pref/autoconfig.js',
+    <<~PREFS
+      // This file must start with a comment or something
+      pref("general.config.filename", "mozilla.cfg");
+      pref("general.config.obscure_value", 0);
+    PREFS
+  )
+  cert = File.read('/etc/ssl/certs/ssl-cert-snakeoil.pem')
+             .split("\n")
+             .reject { |line| /^-----(BEGIN|END) CERTIFICATE-----$/.match(line) }
+             .join
+  $vm.file_overwrite(
+    '/usr/lib/thunderbird/mozilla.cfg',
+    <<~JS
+      // This file must start with a comment or something
+      var observer = {
+        observe: function observe(aSubject, aTopic, aData) {
+          var certdb = Components.classes["@mozilla.org/security/x509certdb;1"].getService(Components.interfaces.nsIX509CertDB);
+          var certdb2 = certdb;
+          try {
+            certdb2 = Components.classes["@mozilla.org/security/x509certdb;1"].getService(Components.interfaces.nsIX509CertDB2);
+          } catch (e) {}
+
+          cert = "#{cert}";
+
+          certdb2.addCertFromBase64(cert, "TCu,TCu,TCu", "");
+        }
+      }
+      Components.utils.import("resource://gre/modules/Services.jsm");
+      Services.obs.addObserver(observer, "profile-after-change", false);
+    JS
+  )
 end
 
 When /^I start Thunderbird$/ do
@@ -26,9 +66,12 @@ When /^I start Thunderbird$/ do
     'pref("mail.compose.attachment_reminder", false);',
   ]
   workaround_pref_lines.each do |line|
-    $vm.file_append('/etc/thunderbird/pref/thunderbird.js', line)
+    $vm.file_append('/etc/thunderbird/pref/thunderbird.js', line + "\n")
   end
-  step 'I start "Thunderbird" via GNOME Activities Overview'
+  # On Jenkins each isotester runs its own email server, using their
+  # respecitve snakeoil SSL cert, so we have to import it.
+  thunderbird_install_host_snakeoil_ssl_cert unless ENV['JENKINS_URL'].nil?
+  step 'I start "ThunderbirdOverviewIcon.png" via GNOME Activities Overview'
   try_for(60) { thunderbird_main }
 end
 
@@ -58,7 +101,7 @@ Then /^I open Thunderbird's Add-ons Manager$/ do
   sleep(1)
   @screen.type('a')
   @thunderbird_addons = thunderbird_app.child(
-    'Add-ons Manager - Mozilla Thunderbird', roleName: 'frame'
+    'Add-ons Manager', roleName: 'document web'
   )
 end
 
@@ -69,36 +112,25 @@ Then /^I open the Extensions tab$/ do
   # finally do the click.
   try_for(10) do
     @thunderbird_addons
-      .child('Extensions', roleName: 'list item', retry: false).click
+      .child('Extensions', roleName: 'page tab', retry: false).click
     # Verify that we clicked correctly:
     @thunderbird_addons
-      .child('Manage Your Extensions', roleName: 'label', retry: false)
+      .child('Manage Your Extensions', roleName: 'heading', retry: false)
   end
 end
 
-Then /^I see that only the (.+) add-on(?:s are| is) enabled in Thunderbird$/ do |addons|
-  expected_addons = addons.split(/, | and /)
-  actual_addons =
-    @thunderbird_addons
-    .child('Enigmail', roleName: 'label')
-    .parent.parent.children(roleName: 'list item', recursive: false)
-    .map(&:name)
-  expected_addons.each do |addon|
-    result = actual_addons.find { |e| e.start_with?(addon) }
-    assert_not_nil(result)
-    actual_addons.delete(result)
-  end
-  assert_equal(0, actual_addons.size)
+Then /^I see that no add-ons are enabled in Thunderbird$/ do
+  assert(!@thunderbird_addons.child?('Enabled', roleName: 'heading'))
 end
 
 When /^I enter my email credentials into the autoconfiguration wizard$/ do
-  address = $config['Icedove']['address']
+  address = $config['Thunderbird']['address']
   name = address.split('@').first
-  password = $config['Icedove']['password']
+  password = $config['Thunderbird']['password']
   thunderbird_wizard.child('Your name:', roleName: 'entry').typeText(name)
   thunderbird_wizard.child('Email address:',
                            roleName: 'entry').typeText(address)
-  thunderbird_wizard.child('Password:', roleName: 'entry').typeText(password)
+  thunderbird_wizard.child('Password:', roleName: 'password text').typeText(password)
   thunderbird_wizard.button('Continue').click
   # This button is shown if and only if a configuration has been found
   try_for(120) { thunderbird_wizard.button('Done') }
@@ -106,13 +138,10 @@ end
 
 Then /^the autoconfiguration wizard's choice for the (incoming|outgoing) server is secure (.+)$/ do |type, protocol|
   type = type.capitalize + ':'
-  section = thunderbird_wizard.child(type, roleName: 'section')
-  assert_not_nil(section.child(protocol, roleName: 'label'))
-  assert(
-    section.children(roleName: 'label').any? do |label|
-      (label.text == 'SSL') || (label.text == 'STARTTLS')
-    end
-  )
+  section = thunderbird_wizard.child(type, roleName: 'unknown')
+  section.child(protocol, roleName: 'label')
+  assert(section.child?('SSL', roleName: 'label') ||
+         section.child?('STARTTLS', roleName: 'label'))
 end
 
 def wait_for_thunderbird_progress_bar_to_vanish(thunderbird_frame)
@@ -128,11 +157,11 @@ def wait_for_thunderbird_progress_bar_to_vanish(thunderbird_frame)
 end
 
 When /^I fetch my email$/ do
-  account = thunderbird_main.child($config['Icedove']['address'],
+  account = thunderbird_main.child($config['Thunderbird']['address'],
                                    roleName: 'table row')
   account.click
   thunderbird_frame = thunderbird_app.child(
-    "#{$config['Icedove']['address']} - Mozilla Thunderbird", roleName: 'frame'
+    "#{$config['Thunderbird']['address']} - Mozilla Thunderbird", roleName: 'frame'
   )
 
   thunderbird_frame.child('Mail Toolbar', roleName: 'tool bar')
@@ -159,7 +188,7 @@ When /^I accept the (?:autoconfiguration wizard's|manual) configuration$/ do
   # Workaround #17272
   if @protocol == 'POP3'
     thunderbird_app
-      .child("Error with account #{$config['Icedove']['address']}")
+      .child("Error with account #{$config['Thunderbird']['address']}")
       .button('OK').click
   end
 
@@ -192,16 +221,16 @@ When /^I send an email to myself$/ do
   thunderbird_main.child('Mail Toolbar',
                          roleName: 'tool bar').button('Write').click
   compose_window = thunderbird_app.child('Write: (no subject) - Thunderbird')
-  compose_window.child('To:', roleName: 'autocomplete').child(roleName: 'entry')
-                .typeText($config['Icedove']['address'])
+  compose_window.child('To', roleName: 'entry')
+                .typeText($config['Thunderbird']['address'])
   # The randomness of the subject will make it easier for us to later
   # find *exactly* this email. This makes it safe to run several tests
   # in parallel.
   @subject = "Automated test suite: #{random_alnum_string(32)}"
-  compose_window.child('Subject:', roleName: 'entry')
+  compose_window.child('Subject', roleName: 'entry')
                 .typeText(@subject)
   compose_window = thunderbird_app.child("Write: #{@subject} - Thunderbird")
-  compose_window.child('', roleName: 'internal frame')
+  compose_window.child('Message body', roleName: 'document web')
                 .typeText('test')
   compose_window.child('Composition Toolbar', roleName: 'tool bar')
                 .button('Send').click
@@ -236,4 +265,22 @@ Then /^my Thunderbird inbox is non-empty$/ do
   visible_messages = message_list.children(recursive: false,
                                            roleName:  'table row')
   assert(!visible_messages.empty?)
+end
+
+Then(/^the screen keyboard works in Thunderbird$/) do
+  step 'I start Thunderbird'
+  osk_key = 'ScreenKeyboardKeyX.png'
+  thunderbird_x = 'ThunderbirdX.png'
+  case $language
+  when 'Arabic'
+    thunderbird_x = 'ThunderbirdXRTL.png'
+  when 'Chinese'
+    thunderbird_x = 'ThunderbirdXChinese.png'
+  when 'Persian'
+    osk_key = 'ScreenKeyboardKeyPersian.png'
+    thunderbird_x = 'ThunderbirdXPersian.png'
+  end
+  @screen.wait('ScreenKeyboard.png', 10)
+  @screen.wait(osk_key, 20).click
+  @screen.wait(thunderbird_x, 20)
 end

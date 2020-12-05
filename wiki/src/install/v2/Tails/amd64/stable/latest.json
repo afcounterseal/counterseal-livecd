@@ -7,9 +7,9 @@
                 {
                     "target-files": [
                         {
-                            "sha256": "35f0eb999c9860d0debbf042b73155d0ed734f2c46f3b721310164ddb5c9d435",
-                            "size": 1226833920,
-                            "url": "http://dl.amnesia.boum.org/tails/stable/tails-amd64-4.10/tails-amd64-4.10.img"
+                            "sha256": "ead1e220837e5df3be7e9f945741e97f2faac15424c91758dd7ea22469fe05fe",
+                            "size": 1185939456,
+                            "url": "http://dl.amnesia.boum.org/tails/stable/tails-amd64-4.13/tails-amd64-4.13.img"
                         }
                     ],
                     "type": "img"
@@ -17,15 +17,15 @@
                 {
                     "target-files": [
                         {
-                            "sha256": "611133569eeb95d6b4eb06c5c0301cc6bb21254d463d656c8a0ad7188688666a",
-                            "size": 1217341440,
-                            "url": "http://dl.amnesia.boum.org/tails/stable/tails-amd64-4.10/tails-amd64-4.10.iso"
+                            "sha256": "880d926c4aef6ac27bc775f1cd99ccdd719499ced982449a31aa0a660f0546a0",
+                            "size": 1176215552,
+                            "url": "http://dl.amnesia.boum.org/tails/stable/tails-amd64-4.13/tails-amd64-4.13.iso"
                         }
                     ],
                     "type": "iso"
                 }
             ],
-            "version": "4.10"
+            "version": "4.13"
         }
     ],
     "product-name": "Tails"

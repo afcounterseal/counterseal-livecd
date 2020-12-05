@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tails\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2020-06-25 02:00+0000\n"
+"POT-Creation-Date: 2020-11-18 16:22+0000\n"
 "PO-Revision-Date: 2020-08-20 17:29+0000\n"
 "Last-Translator: xin <xin@riseup.net>\n"
 "Language-Team: Tails translators <tails@boum.org>\n"
@@ -106,24 +106,30 @@ msgstr ""
 "avoir sélectionné ou désélectionné une ou plusieurs options.</p>\n"
 
 #. type: Plain text
-#, fuzzy, no-wrap
+#, no-wrap
 msgid ""
 "<p>Only the features that are listed below can currently be made\n"
-"persistent. We are often asked to implement new features to the\n"
+"persistent.</p>\n"
+msgstr ""
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"<p>We are often asked to implement new features of the\n"
 "Persistent Storage:\n"
-"[[!tails_ticket 5501 desc=\"language and keyboard layout\"]],\n"
-"[[!tails_ticket 5461 desc=\"Tor configuration\"]],\n"
-"[[!tails_ticket 7148 desc=\"wallpaper\"]],\n"
-"[[!tails_ticket 5979 desc=\"mouse and touchpad settings\"]],\n"
-"etc. See the\n"
-msgstr "Seules les options listées ici peuvent actuellement être rendues persistantes. D'autres options ont été demandées et acceptées, mais attendent d'être implémentées : les extensions du navigateur, [[!tails_ticket 7148 desc=\"le fond d'écran\"]], [[!tails_ticket 7246 desc=\"la carte son par défaut\"]], [[!tails_ticket 5979 desc=\"la configuration de la souris et du pavé tactile\"]], etc. Voir [[les tickets correspondants|https://redmine.tails.boum.org/code/projects/tails/issues?query_id=122]] pour plus de détails."
+"Tor Browser preferences,\n"
+"Tor configuration,\n"
+"desktop background,\n"
+"mouse and touchpad settings,\n"
+"etc.\n"
+"See the\n"
+msgstr ""
 
 #. type: Plain text
 #, no-wrap
 msgid ""
 "groups/tails/-/issues?scope=all&utf8=✓&state=opened&label_name%5B%5D=C%3APersistence\n"
-"desc=\"corresponding issues\"]]\n"
-"for more details.<p>\n"
+"desc=\"list of issues about the Persistent Storage\"]].<p>\n"
 msgstr ""
 
 #. type: Plain text
@@ -136,12 +142,12 @@ msgstr "<div class=\"bug\" id=\"deselect\">\n"
 msgid ""
 "<p>If you turn off a feature, it will be\n"
 "unavailable after restarting Tails but the\n"
-"[[corresponding files|doc/first_steps/persistence/copy#feature_files]]\n"
+"corresponding files\n"
 "are still saved in the Persistent Storage.</p>\n"
 msgstr ""
 "<p>Si vous désélectionnez une option qui était auparavant activée, elle sera\n"
 "désactivée après avoir redémarré Tails mais les\n"
-"[[fichiers correspondants|doc/first_steps/persistence/copy#feature_files]]\n"
+"[[fichiers correspondants|doc/first_steps/persistence/backup#feature_files]]\n"
 "seront conservés sur le volume persistant.</p>\n"
 
 #. type: Plain text
@@ -178,6 +184,7 @@ msgid ""
 "    Delete the folder corresponding to the feature:\n"
 "    <ul>\n"
 "      <li><strong>Personal Data</strong>: <code>Persistent</code> folder</li>\n"
+"      <li><strong>Welcome Screen</strong>: <code>greeter-settings</code> folder</li>\n"
 "      <li><strong>Browser Bookmarks</strong>: <code>bookmarks</code> folder</li>\n"
 "      <li><strong>Network Connections</strong>: <code>nm-system-connections</code></li>\n"
 "      <li><strong>Additional Software</strong>: <code>apt</code> and <code>apt-sources.list.d</code> folders and <code>live-additional-software.conf</code> file</li>\n"
@@ -215,7 +222,7 @@ msgstr ""
 "    /live/persistence/TailsData_unlocked</span>.\n"
 "  </li>\n"
 "  <li>\n"
-"    Supprimer le [[dossier correspondant à l'option|doc/first_steps/persistence/copy#feature_files]].\n"
+"    Supprimer le [[dossier correspondant à l'option|doc/first_steps/persistence/backup#feature_files]].\n"
 "  </li>\n"
 "</ol>\n"
 
@@ -294,18 +301,6 @@ msgid ""
 msgstr ""
 "Lorsque cette option est activée, tous les fichiers relatifs au client shell "
 "sécurisé (SSH) sont sauvegardés dans le volume persistant :"
-
-#. type: Plain text
-#, no-wrap
-msgid "<!-- Remove this note once #17136 is closed. -->\n"
-msgstr "<!-- Remove this note once #17136 is closed. -->\n"
-
-#. type: Plain text
-#, no-wrap
-msgid ""
-"<p><strong>Beta</strong>: In Tails 4.8, only the additional setting to\n"
-"enable the Unsafe Browser is made persistent.</p>\n"
-msgstr ""
 
 #. type: Plain text
 msgid ""
@@ -487,8 +482,8 @@ msgstr ""
 #. type: Plain text
 #, fuzzy
 msgid ""
-"When the Thunderbird feature is turned on, the configuration and emails "
-"stored by the [[*Thunderbird* email client|doc/anonymous_internet/"
+"When the Thunderbird feature is turned on, the email, feeds, and OpenPGP "
+"keys in the [[*Thunderbird* email client|doc/anonymous_internet/"
 "thunderbird]] are saved in the Persistent Storage."
 msgstr ""
 "Lorsque cette option est activée, tous les fichiers de configuration "
@@ -525,6 +520,15 @@ msgid ""
 msgstr ""
 "Lorsque cette option est activée, les clés OpenPGP que vous créez et "
 "importez sont sauvegardées dans le volume persistant."
+
+#. type: Plain text
+#, no-wrap
+msgid ""
+"<p>Since Tails 4.13 (November 2020), <em>Thunderbird</em> uses its own OpenPGP keyring,\n"
+"different from the keyring used by <em>GnuPG</em>. You don't need to enable the GnuPG\n"
+"feature anymore if you only use OpenPGP encryption in\n"
+"<em>Thunderbird</em>.</p>\n"
+msgstr ""
 
 #. type: Plain text
 #, no-wrap
@@ -717,6 +721,13 @@ msgid ""
 "folder."
 msgstr ""
 
+#. type: Bullet: '- '
+msgid ""
+"A shortcut is provided in the *Files* browser and in the **Places** menu in "
+"the top navigation bar to access the */live/persistence/TailsData_unlocked/"
+"dotfiles* folder."
+msgstr ""
+
 #. type: Plain text
 msgid ""
 "For example, having the following files in */live/persistence/"
@@ -838,9 +849,14 @@ msgid "Configure your displays."
 msgstr "Configurez vos écrans."
 
 #. type: Bullet: '1. '
+#, fuzzy
+#| msgid ""
+#| "Open <span class=\"filename\">/live/persistence/TailsData_unlocked/"
+#| "dotfiles</span> in the <span class=\"application\">Files</span> browser."
 msgid ""
-"Open <span class=\"filename\">/live/persistence/TailsData_unlocked/dotfiles</"
-"span> in the <span class=\"application\">Files</span> browser."
+"Choose **Places**&nbsp;▸ **Dotfiles** to open the <span class=\"filename\">/"
+"live/persistence/TailsData_unlocked/dotfiles</span> folder in the <span "
+"class=\"application\">Files</span> browser."
 msgstr ""
 "Ouvrez <span class=\"filename\">/live/persistence/TailsData_unlocked/"
 "dotfiles</span> dans le navigateur de <span class=\"application\">Fichiers</"
@@ -875,6 +891,29 @@ msgstr ""
 "depuis votre <span class=\"filename\">Dossier personnel</span> vers <span "
 "class=\"filename\">/live/persistence/TailsData_unlocked/dotfiles/.config</"
 "span>."
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>Only the features that are listed below can currently be made\n"
+#~ "persistent. We are often asked to implement new features to the\n"
+#~ "Persistent Storage:\n"
+#~ "[[!tails_ticket 5501 desc=\"language and keyboard layout\"]],\n"
+#~ "[[!tails_ticket 5461 desc=\"Tor configuration\"]],\n"
+#~ "[[!tails_ticket 7148 desc=\"wallpaper\"]],\n"
+#~ "[[!tails_ticket 5979 desc=\"mouse and touchpad settings\"]],\n"
+#~ "etc. See the\n"
+#~ msgstr ""
+#~ "Seules les options listées ici peuvent actuellement être rendues "
+#~ "persistantes. D'autres options ont été demandées et acceptées, mais "
+#~ "attendent d'être implémentées : les extensions du navigateur, [[!"
+#~ "tails_ticket 7148 desc=\"le fond d'écran\"]], [[!tails_ticket 7246 desc="
+#~ "\"la carte son par défaut\"]], [[!tails_ticket 5979 desc=\"la "
+#~ "configuration de la souris et du pavé tactile\"]], etc. Voir [[les "
+#~ "tickets correspondants|https://redmine.tails.boum.org/code/projects/tails/"
+#~ "issues?query_id=122]] pour plus de détails."
+
+#~ msgid "<!-- Remove this note once #17136 is closed. -->\n"
+#~ msgstr "<!-- Remove this note once #17136 is closed. -->\n"
 
 #~ msgid ""
 #~ "To start the persistent volume assistant, choose\n"
@@ -1220,7 +1259,7 @@ msgstr ""
 #~ "  </li>\n"
 #~ "  <li>\n"
 #~ "    Delete the [[folder corresponding to the feature|doc/first_steps/"
-#~ "persistence/copy#feature_files]].\n"
+#~ "persistence/backup#feature_files]].\n"
 #~ "  </li>\n"
 #~ "</ol>\n"
 #~ msgstr ""
@@ -1251,6 +1290,6 @@ msgstr ""
 #~ "  </li>\n"
 #~ "  <li>\n"
 #~ "    Supprimer le [[dossier correspondant à l'option|doc/first_steps/"
-#~ "persistence/copy#feature_files]].\n"
+#~ "persistence/backup#feature_files]].\n"
 #~ "  </li>\n"
 #~ "</ol>\n"
