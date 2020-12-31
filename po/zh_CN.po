@@ -38,9 +38,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tor Project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-04 11:24+0100\n"
-"PO-Revision-Date: 2020-12-07 08:43+0000\n"
-"Last-Translator: Scott Rhodes <starring169@gmail.com>\n"
+"POT-Creation-Date: 2020-12-30 10:13+0100\n"
+"PO-Revision-Date: 2020-12-11 09:16+0000\n"
+"Last-Translator: Transifex Bot <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/torproject/"
 "language/zh_CN/)\n"
 "Language: zh_CN\n"
@@ -1713,15 +1713,15 @@ msgstr ""
 msgid "error:"
 msgstr "错误："
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:67
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:23
 msgid "Warning: virtual machine detected!"
 msgstr "警告：检测到虚拟机！"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:70
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:25
 msgid "Warning: non-free virtual machine detected!"
 msgstr "警告：检测到非自由虚拟机！"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:73
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:27
 msgid ""
 "Both the host operating system and the virtualization software are able to "
 "monitor what you are doing in Tails. Only free software can be considered "
@@ -1731,8 +1731,13 @@ msgstr ""
 "主机的操作系统和虚拟化软件都可能监视您在使用 Tails 时的行为。只有自由软件值得"
 "信赖，包括主机的操作系统和虚拟化软件。"
 
-#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:77
-msgid "Learn more"
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:40
+msgid "Don't Show Again"
+msgstr ""
+
+#: config/chroot_local-includes/usr/local/lib/tails-virt-notify-user:42
+#, fuzzy
+msgid "Learn More"
 msgstr "详细了解"
 
 #: config/chroot_local-includes/usr/local/bin/thunderbird:40
@@ -2563,6 +2568,3 @@ msgstr "送出"
 #: ../config/chroot_local-includes/usr/local/share/mime/packages/unlock-veracrypt-volumes.xml.in.h:1
 msgid "TrueCrypt/VeraCrypt container"
 msgstr "TrueCrypt/VeraCrypt 容器"
-
-#~ msgid "https://tails.boum.org/"
-#~ msgstr "https://tails.boum.org/"
