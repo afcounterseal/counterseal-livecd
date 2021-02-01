@@ -41,7 +41,8 @@ class Mount(object):
     target directory.
 
     This corresponds to the "link" option of live-boot(5). Below is the
-    description of that option from the live-boot(5) man page.
+    description of that option from the live-boot(5) man page (author:
+    Daniel Baumann <mail@daniel-baumann.ch>, licensed under GPLv3):
 
     Create the directory structure of the source directory on the persistence media in DIR
     and create symbolic links from the corresponding place in DIR  to  each  file  in  the

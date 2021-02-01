@@ -124,6 +124,11 @@ shellcheck:
     reports:
       junit: shellcheck.xml
 
+test-persistent-storage:
+  script:
+    - apt-get -qy install python3 python3-gi acl
+    - python3 -m unittest config/chroot_local-includes/usr/lib/python3/dist-packages/tps/configuration/config_file_test.py
+
 test-python-doctest:
   script:
     - apt-get -qy install python3 python3-sh
