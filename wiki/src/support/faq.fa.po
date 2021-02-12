@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: tails-l10n@boum.org\n"
-"POT-Creation-Date: 2020-12-15 05:58+0000\n"
+"POT-Creation-Date: 2021-01-26 06:56+0000\n"
 "PO-Revision-Date: 2020-09-05 06:30+0000\n"
 "Last-Translator: emmapeel <emma.peel@riseup.net>\n"
 "Language-Team: Persian <http://weblate.451f.org:8889/projects/tails/faq/fa/"
@@ -433,7 +433,7 @@ msgstr ""
 #. type: Plain text
 msgid ""
 "Verification using a checksum would be no better than verifying using one of "
-"the techniques documented on our download page: our browser extension, "
+"the techniques documented on our download page: our JavaScript verification, "
 "BitTorrent, or basic OpenPGP."
 msgstr ""
 
@@ -547,9 +547,12 @@ msgid ""
 msgstr "۱. آن‌ها می‌تواند اطلاعاتی در مورد رفتار وب‌گردی، تاریخچهٔ وب‌گردی یا اطلاعات سیستم شما را چه از عمد و چه از روی اشتباه پیگیری و فاش کنند.\n"
 
 #. type: Plain text
-#, no-wrap
+#, fuzzy, no-wrap
+#| msgid ""
+#| "2. They can have bugs and security holes that can be remotely exploited by an\n"
+#| "attacker.\n"
 msgid ""
-"2. They can have bugs and security holes that can be remotely exploited by an\n"
+"2. They can have bugs and security vulnerabilities that can be remotely exploited by an\n"
 "attacker.\n"
 msgstr "۲. آن‌ها ممکن است ایراد و حفره‌های امنیتی داشته باشند که از سوی یک مهاجم کنترل می‌شود.\n"
 
@@ -661,7 +664,7 @@ msgstr "چگونه نتایج آزمون‌های ناشناسی آنلاین ر
 #| "<https://ip-check.info/> try to retrieve as much information as possible "
 #| "from your browser to see if it can be used to identify you."
 msgid ""
-"Fingerprinting websites, such as <https://panopticlick.eff.org/>, try to "
+"Fingerprinting websites, such as <https://coveryourtracks.eff.org/>, try to "
 "retrieve as much information as possible from your browser to see if it can "
 "be used to identify you."
 msgstr ""
@@ -911,8 +914,8 @@ msgstr "وصل شدن به یک وی‌پی‌ان از طریق تور (وی‌
 #| "For more information, see our [[blueprint on VPN support|blueprint/"
 #| "vpn_support/]]."
 msgid ""
-"For more information, see our [[blueprint on VPN support|blueprint/"
-"vpn_support]]."
+"For more information, see our [[!tails_blueprint desc=\"blueprint on VPN "
+"support\" vpn_support]]."
 msgstr ""
 "برای اطلاعات بیشتر [[بلوپرینت پشتیبانی از وی‌پی‌ان|blueprint/vpn_support/]] ما "
 "را ببینید."
@@ -1366,18 +1369,6 @@ msgstr ""
 
 #. type: Plain text
 #, fuzzy, no-wrap
-#| msgid ""
-#| "We had relatively vague [[!tails_ticket 5991 desc=\"plans to improve\n"
-#| "on this situation\"]].\n"
-msgid ""
-"We had relatively vague [[!tails_ticket 9563 desc=\"plans to improve\n"
-"on this situation\"]].\n"
-msgstr ""
-"[[!tails_ticket 5991 desc=\"راه‌حل‌های ما\n"
-"برای بهبود این وضعیت\"]] نسبتاً مبهم هستند.\n"
-
-#. type: Plain text
-#, fuzzy, no-wrap
 #| msgid "Can I download using BitTorrent with Tails?\n"
 msgid "<h2 id=\"youtube\">Can I download videos from websites?</h2>\n"
 msgstr "آیا می‌توانم در تیلز با بیت‌تورنت دانلود کنم؟\n"
@@ -1752,6 +1743,17 @@ msgid ""
 msgstr ""
 "برای جزییات بیشتر رجوع کنید به [[!wikipedia Linux_malware desc=\"صفحهٔ "
 "ویکی‌پدیا در مورد بدافزارهای لینوکس\"]]."
+
+#, fuzzy
+#~| msgid ""
+#~| "We had relatively vague [[!tails_ticket 5991 desc=\"plans to improve\n"
+#~| "on this situation\"]].\n"
+#~ msgid ""
+#~ "We had relatively vague [[!tails_ticket 9563 desc=\"plans to improve\n"
+#~ "on this situation\"]].\n"
+#~ msgstr ""
+#~ "[[!tails_ticket 5991 desc=\"راه‌حل‌های ما\n"
+#~ "برای بهبود این وضعیت\"]] نسبتاً مبهم هستند.\n"
 
 #~ msgid ""
 #~ "<em>&hellip; like language, keyboard layout, background image, toolbar "

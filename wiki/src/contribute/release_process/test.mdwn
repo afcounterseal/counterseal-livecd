@@ -110,7 +110,7 @@ tracked by subtasks of [[!tails_ticket 10250]].
 
 * [Download](https://torbrowser-archive.tails.boum.org/) the same version of Tor
   Browser and compare its fingerprint (running on Linux outside of Tails) with
-  Tor Browser in Tails, using at least <https://panopticlick.eff.org/>.
+  Tor Browser in Tails, using at least <https://coveryourtracks.eff.org/>.
   Click "Show full results for
   fingerprinting" to see the details we're interested in.
   - The exposed User-Agent should match the latest Tor Browser's one.
@@ -186,42 +186,15 @@ at the application level:
 5. Once the upgrade has been applied and you're suggested to restart Tails,
    do that.
 
-6. Verify that the resulting, upgraded system "works fine":
+6. In the Welcome Screen, enable the Unsafe Browser.
+
+7. Verify that the resulting, upgraded system "works fine":
 
    * it boots
    * it pretends to be the correct version
    * Tor works fine
    * Tor Browser works fine
    * the Unsafe Browser starts
-
-# Tails Verification
-
-* The goal is to check that *Tails Verification* works in *Tor
-  Browser* in the version of Tails we are testing here. *Tails
-  Verification* only supports verifying the current release so for
-  example, when doing tests for the Tails 3.13 release, we use it in
-  the tentative Tails 3.13 to verify the Tails 3.12 ISO and USB images.
-
-  1. Start the Tails that you are testing.
-
-  2. Start *Tor Browser*.
-
-  3. Visit <https://tails.boum.org/install/download-iso/>.
-
-  4. If you already have the ISO image for the last, already released
-     version of Tails, i.e. the one that's advertised in the sidebar
-     of our production website, then click "*I already downloaded Tails $N*".
-     Otherwise follow the instructions on that web page to download
-     the ISO image.
-
-  5. Install *Tails Verification*.
-
-  6. Click the **Verify Tails $N** button.
-
-  7. The verification should be successful.
-
-  8. Repeat for the USB image, except the URL for step (3) is:
-     <https://tails.boum.org/install/download/>
 
 # Torrents
 
@@ -261,6 +234,6 @@ On a computer configured to prefer legacy BIOS boot:
 
 # Misc
 
-* Check that the output of `sudo journalctl` should seem OK.
+* Check that the output of `sudo journalctl` looks OK.
   For a quick overview, something like `sudo journalctl -p 0..3` can be helpful.
   `[can't-automate]`
