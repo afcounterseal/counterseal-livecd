@@ -25,6 +25,16 @@ class BrowserBookmarks(Feature):
     ]
 
 
+class LanguageAndRegion(Feature):
+    Id = "LanguageAndRegion"
+    Mounts = [
+        Mount("language", "/var/lib/gdm3/settings/persistent/tails.language",
+              is_file=True),
+        Mount("region", "/var/lib/gdm3/settings/persistent/tails.region",
+              is_file=True),
+    ]
+
+
 class NetworkConnections(Feature):
     Id = "NetworkConnections"
     Mounts = [Mount("nm-system-connections",
