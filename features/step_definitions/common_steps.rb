@@ -258,9 +258,7 @@ def start_up_spammer(domain_name)
     bus,
     "--unit=#{up_spammer_unit_name}",
     '--quiet',
-    # XXX: enable this once we require systemd v236 or newer
-    # for running our test suite
-    # '--collect',
+    '--collect',
     '/usr/bin/ruby',
     '-e', up_spammer_code(domain_name)
   )
@@ -515,7 +513,7 @@ end
 Given /^the Tor Browser loads the (startup page|Tails homepage|Tails GitLab)$/ do |page|
   case page
   when 'startup page'
-    titles = ['Tails', 'Tails - Trying a testing version of Tails']
+    titles = ['Tails', 'Tails - Trying a testing version of Tails', 'Tails - Welcome to Tails!']
   when 'Tails homepage'
     titles = ['Tails']
   when 'Tails GitLab'
