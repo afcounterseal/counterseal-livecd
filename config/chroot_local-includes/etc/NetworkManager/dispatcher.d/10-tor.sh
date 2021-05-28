@@ -20,25 +20,20 @@ fi
 # Import tor_control_setconf(), TOR_LOG
 . /usr/local/lib/tails-shell-library/tor.sh
 
-# It's safest that Tor is not running when messing with its logs.
-systemctl stop tor@default.service
-
-# We depend on grepping stuff from the Tor log (especially for
-# tordate/20-time.sh), so deleting it seems like a Good Thing(TM).
-rm -f "${TOR_LOG}"
-
-# We would like Tor to be started during init time, even before the
-# network is up, and then send it a SIGHUP here to make it start
-# bootstrapping swiftly, but it doesn't work because of a bug in
-# Tor. Details:
-# * https://trac.torproject.org/projects/tor/ticket/1247
-# * https://tails.boum.org/bugs/tor_vs_networkmanager/
-# To work around this we restart Tor.
-systemctl restart tor@default.service
-
+systemctl start tor@default.service
 /usr/local/sbin/tails-tor-launcher &
 
 # Wait until the user has done the Tor Launcher configuration.
 until [ "$(tor_control_getconf DisableNetwork)" = 0 ]; do
     sleep 1
 done
+
+# XXX: It seems tor is most reliable at successfully bootstrapping if
+# it is freshly restarted, so we abort the bootstrap it just started
+# when DisableNetwork became 0 and start a new one. Now that's an
+# interesting network fingerprint!
+systemctl stop tor@default.service
+# We depend on grepping stuff from the Tor log (especially for
+# tordate/20-time.sh), so deleting it seems like a Good Thing(TM).
+rm -f "${TOR_LOG}"
+systemctl start tor@default.service
