@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Counterseal
+Comment=Ai-Fi.net Counterseal
+GenericName=Counterseal
+X-GNOME-FullName=Ai-Fi.net Counterseal
+Exec=/usr/local/ai-fi.net/Counterseal/Counterseal
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/usr/local/ai-fi.net/Counterseal/resources/app/1024-1024.png
+Categories=Cryptocurrency;Network;
