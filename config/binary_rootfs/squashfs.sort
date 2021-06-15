@@ -234,8 +234,6 @@ etc/skel/.purple/prefs.xml                                           32493
 etc/skel/.tor-browser/profile.default/bookmarks.html                 32492
 etc/skel/.tor-browser/profile.default/prefs.js                       32491
 etc/skel/.xsessionrc                                                 32490
-etc/skel/Desktop/Report_an_error.desktop                             32489
-etc/skel/Desktop/tails-documentation.desktop                         32488
 usr/bin/chfn                                                         32485
 lib/x86_64-linux-gnu/libpam_misc.so.0.82.1                           32484
 etc/pam.d/chfn                                                       32483
