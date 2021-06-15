@@ -2290,11 +2290,6 @@ msgstr "无效的联系人 OpenPGP 密钥：%s"
 msgid "Invalid contact OpenPGP public key block"
 msgstr "无效的联系人 OpenPGP 公钥块"
 
-#: ../config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in.h:1
-msgid "Report an error"
-msgstr "报告错误"
-
-#: ../config/chroot_local-includes/etc/skel/Desktop/tails-documentation.desktop.in.h:1
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:1
 msgid "Tails documentation"
 msgstr "Tails 文档"

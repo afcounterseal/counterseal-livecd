@@ -2315,11 +2315,6 @@ msgstr "Kontaktens OpenPGP-nøgle er ugyldig: %s"
 msgid "Invalid contact OpenPGP public key block"
 msgstr "Kontaktens offentlig nøgle-blok for OpenPGP er ugyldig"
 
-#: ../config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in.h:1
-msgid "Report an error"
-msgstr "Rapportér en fejl"
-
-#: ../config/chroot_local-includes/etc/skel/Desktop/tails-documentation.desktop.in.h:1
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:1
 msgid "Tails documentation"
 msgstr "Dokumentation til Tails"

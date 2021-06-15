@@ -2399,11 +2399,6 @@ msgstr "Clave OpenPGP de contacto inválida: %s"
 msgid "Invalid contact OpenPGP public key block"
 msgstr "Bloque de clave pública OpenPGP de contacto inválido"
 
-#: ../config/chroot_local-includes/etc/skel/Desktop/Report_an_error.desktop.in.h:1
-msgid "Report an error"
-msgstr "Reportar un error"
-
-#: ../config/chroot_local-includes/etc/skel/Desktop/tails-documentation.desktop.in.h:1
 #: ../config/chroot_local-includes/usr/share/applications/tails-documentation.desktop.in.h:1
 msgid "Tails documentation"
 msgstr "Documentación de Tails"
