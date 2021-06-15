@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.0.1">
+  <title>Ai-Fi Crypton</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="js/filesaver.js"></script>
+  <style>
+    .krtoken-contents::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script type="text/javascript">
+    function readTokenFromFile(e) {
+      var file = e.target.files[0];
+      if (!file) {
+          return;
+      }
+      var reader = new FileReader();
+      reader.onload = function(e) {
+          var contents = e.target.result;
+          if (contents) {
+            $('#open-button').prop('disabled', false);
+
+            g_importedToken = JSON.parse(contents);
+          }
+      };
+      reader.readAsText(file);
+    }
+    function togglePasswordVisiable() {
+      if($('#passphrase-tf').attr('type') === 'text') {
+        $('#passphrase-tf').attr('type', 'password');
+        $('#btn-show-password').html('Show Password');
+      } else {
+        $('#passphrase-tf').attr('type', 'text');
+        $('#btn-show-password').html('Hide Password');
+      }
+    }
+    function gotoGuideScreen() {
+
+      $('#token-guide-card').css({display: 'block'});
+      $('#token-credential-card').css({display: 'none'});
+    }
+
+    function gotoBackup() {
+      $('#token-file-label').css({display: 'none'});
+      $('#token-file').css({display: 'none'});
+      $('#token-file-msg').css({display: 'none'});
+      $('#btn-generate-salt').css({display: 'block'});
+      $('#entropy-salt-tf').val('');
+      $('#passphrase-tf').val('');
+
+      $('#token-guide-card').css({display: 'none'});
+      $('#token-credential-card').css({display: 'block'});
+      $('#token-credential-card-title').text('Backup as Crypton');
+      $('#token-credential-card-buttons').html('&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary"\n' +
+        '                    onclick="backupClicked()" id="open-button">Backup</button>&nbsp;&nbsp;&nbsp;&nbsp;\n' +
+        '            <div id="open-indicator" class="spinner-border" role="status" style="color: #00aaff; display: none;">\n' +
+        '              <span class="sr-only">Opening...</span>\n' +
+        '            </div>\n')
+        // '            <a href="#" onclick="gotoOpenExistedToken(); return false;">I have a Crypton</a>')
+    }
+    
+    function gotoRestore() {
+      $('#token-file-label').css({display: 'none'});
+      $('#token-file').css({display: 'none'});
+      $('#token-file-msg').css({display: 'none'});
+      $('#entropy-salt-tf').val('');
+      $('#passphrase-tf').val('');
+
+      $('#token-guide-card').css({display: 'none'});
+      $('#token-credential-card').css({display: 'block'});
+      $('#token-credential-card-title').text('Restore from Crypton');
+      $('#btn-generate-random-entropy-salt').css({display: 'none'});
+      //$('btn-show-password').css({display: 'none'});
+      
+      $('#token-credential-card-buttons').html('&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary"\n' +
+        '                    onclick="restoreClicked()" id="open-button">Restore</button>&nbsp;&nbsp;&nbsp;&nbsp;\n' +
+        '            <div id="open-indicator" class="spinner-border" role="status" style="color: #00aaff; display: none;">\n' +
+        '              <span class="sr-only">Opening...</span>\n' +
+        '            </div>\n')
+        // '            <a href="#" onclick="gotoCreateNewToken(); return false;">I am New Here</a>')
+    }
+
+
+    function gotoImport() {
+
+      $('#token-file-label').css({display: 'block'});
+      $('#token-file').css({display: 'block'});
+      $('#token-file-msg').css({display: 'block'});
+
+      $('#entropy-salt-tf').val('');
+      $('#passphrase-tf').val('');
+
+      $('#token-guide-card').css({display: 'none'});
+      $('#token-credential-card').css({display: 'block'});
+      $('#token-credential-card-title').text('Import from Crypton Backup');
+      $('#token-credential-card-buttons').html('&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary"\n' +
+        '                    onclick="importClicked()" id="open-button" disabled="disabled">Import</button>&nbsp;&nbsp;&nbsp;&nbsp;\n' +
+        '            <div id="open-indicator" class="spinner-border" role="status" style="color: #00aaff; display: none;">\n' +
+        '              <span class="sr-only">Importing...</span>\n' +
+        '            </div>\n')
+
+      document.getElementById('token-file').addEventListener('change', readTokenFromFile, false);
+    }
+
+    function gotoExport() {
+      $('#token-file-label').css({display: 'none'});
+      $('#token-file').css({display: 'none'});
+      $('#token-file-msg').css({display: 'none'});
+
+      $('#entropy-salt-tf').val('');
+      $('#passphrase-tf').val('');
+
+      $('#token-guide-card').css({display: 'none'});
+      $('#token-credential-card').css({display: 'block'});
+      $('#token-credential-card-title').text('Export as Crypton Backup');
+      $('#btn-generate-random-entropy-salt').css({display: 'none'});
+      //$('btn-show-password').css({display: 'none'});
+      
+      $('#token-credential-card-buttons').html('&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary"\n' +
+        '                    onclick="exportClicked()" id="open-button">Export</button>&nbsp;&nbsp;&nbsp;&nbsp;\n' +
+        '            <div id="open-indicator" class="spinner-border" role="status" style="color: #00aaff; display: none;">\n' +
+        '              <span class="sr-only">Exporting...</span>\n' +
+        '            </div>\n')
+        // '            <a href="#" onclick="gotoCreateNewToken(); return false;">I am New Here</a>')
+    }
+
+    function generateRandomEntropySalt() {
+      var items = [];
+      for (let i=0; i<10; i++) {
+        items.push(Math.floor(Math.random() * 255));
+      }
+      var salt = base32.encode(items);
+      $('#entropy-salt-tf').val(salt);
+    }
+  </script>
+</head>
+
+<body class="d-flex flex-column h-100"
+  style="background: #1EB0D7 url(img/bg.jpg) no-repeat; background-size: cover;">
+
+
+<div class="modal fade" id="overrideModal" tabindex="-1" role="dialog" aria-labelledby="overrideModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="overrideModalLabel">Token already exists</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to overwrite it with new vault data?
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="button" class="btn btn-secondary" onclick="window.location.reload();">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="overrideButtonClicked()">Overwite</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="alertModalLabel">Token already exists</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body" id="alertModalBody">
+        Do you want to overwrite it with new vault data?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Key share has been saved</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="confirmModalBody" style="word-break: break-all;">
+        Demo
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html';">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div style="position: absolute; left:0; right:0; top: 0; bottom: 0; background-color: white;z-index: 10000;" id="page-load-indicator">
+  <!--<div class="spinner-grow text-info" role="status" style="width: 15rem; height: 15rem;">
+    <span class="sr-only">Loading...</span>
+
+  </div>-->
+  <div style="position: absolute; top: calc(50% - 30px); width: 100%; text-align: center; height: 60px; line-height: 60px;">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <!--
+    <div class="spinner-grow text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>-->
+    <div class="spinner-grow text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <a class="navbar-brand" href="#">Ai-Fi Crypton Backup</a>
+      <!--
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+    -->
+    </nav>
+  </header>
+
+  <!-- Begin page content -->
+  <!-- <main role="main" class="flex-shrink-0" style="background-color: blue; height: calc(100% - 112);">
+  <div class="container" style="background-color: aqua;">
+  </div>
+</main> -->
+
+  <main style="position: absolute; top: 56px; bottom: 56px; left: 0; right: 0; ">
+
+
+    <div class="col-xl-3 col-lg-4" style="position: absolute; top: 0; bottom: 0; left: 0;" id="krypton-token-workspace">
+      <div style="position: fixed;z-index:10;width:100px;left:22px;height:44px;/* background-color:red; */line-height:44px;" id="back-button-div">
+        <button style="background: none; border: none; color:white;" onclick="window.location.href='index.html';">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+        </button>
+      </div>
+
+
+      <!--login card-->
+      <div class="card justify-content-center" style="width:100%;">
+        <img class="card-img-top" src="img/title.jpg" alt="Card image" style="width:100%">
+        <div class="card-body" id="token-guide-card">
+
+          <h4 class="card-title" style="text-align: center;"><a href="https://ai-fi.net/help/anonymouscloudstorage.html#ai-fi-krypton-token-types" target="_blank">What's Ai-Fi Crypton?</a></h4>
+          <p class="card-text" style="text-align: center; line-height: 64px;">
+            <button class="btn btn-success"
+                    onclick="gotoBackup()" id="goto-create-button">Create New Crypton</button> <br />
+            <button class="btn btn-primary"
+                    onclick="gotoRestore()" id="goto-open-button">Retrieve Existing Crypton</button>
+          </p>
+        </div>
+        <div class="card-body" style="display: none;" id="token-credential-card">
+          <h4 class="card-title" id="token-credential-card-title">Retrieve the Crypton</h4>
+
+          <div class="card-text">
+
+            <label for="entropy-salt-tf">Entropy Extender</label>
+            <input type="text" id="entropy-salt-tf" class="form-control" placeholder="Random texts" required autofocus />
+            <div style="text-align: right;"><a id="btn-generate-salt" style="display: none;" href="#" onclick="generateRandomEntropySalt()">Random texts</a></div>
+            <!--<a id="btn-generate-random-entropy-salt" href="#" style="float: right;">Generate Random Entropy Salt<br/></a>-->
+            <br />
+            <label for="passphrase-tf">Password</label>
+            <input type="text" id="passphrase-tf" class="form-control" placeholder="Password, allowing spaces" required />
+            <div style="text-align: right;"><a id="btn-show-password" href="#" onclick="togglePasswordVisiable()">Hide Password</a></div>
+            <div style="text-align: right;" id="strength_human"></div>
+            <br />
+            <label for="token-file" id="token-file-label" style="display: none;">Crypton Backup file</label>
+            <input type="file" id="token-file" style="display: none;" class="form-control" placeholder="Token" required />
+            <div style="text-align: right; display: none;" id="token-file-msg"></div>
+          </div>
+          <div style="text-align: center; line-height: 44px;" id="token-credential-card-buttons">
+            <!--<button class="btn btn-primary"
+                    onclick="openClicked()" id="open-button" disabled="disabled">Open</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <div id="open-indicator" class="spinner-border" role="status" style="color: #00aaff; display: none;">
+              <span class="sr-only">Opening...</span>
+            </div>
+            <br />
+            <a href="#" onclick="gotoCreateNewToken(); return false;" id="create-button" disabled="disabled">Create New Token</a>-->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer mt-auto py-3" style="background: none;">
+    <div class="container" style="text-align: center;">
+      <span style="color: #fff;">Copyright © 2020. <a href="https://ai-fi.net" style="color: #fff;">Ai-Fi.net</a> All rights reserved.</span>
+    </div>
+  </footer>
+  <script src="libs/jquery/jquery.js?v=1.2"></script>
+  <script src="libs/bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="libs/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+  <!-- Thinbus SRP -->
+
+  <!-- Include minimised Thinbus SRP JS crypo library -->
+  <script src="libs/srp/thinbus-srp6a-min.js"></script>
+  <!-- You must include a crypto configuration and it must match what the server is configured to use -->
+  <script src="libs/srp/thinbus-srp6a-2048-sha256-min.js"></script>
+
+  <script src="js/zxcvbn.js?v=1.2.10"></script>
+  <script src="js/simple-password-meter.js"></script>
+
+
+  <script src="js/base32.js"></script>
+  <script src="js/blake2s.js"></script>
+  <script src="js/scrypt.js"></script>
+  <script src="js/supercop.js"></script>
+  <script src="js/index.js"></script>
+  <script src="libs/crypto-js-4.0.0/crypto-js.js"></script>
+  <script src="js/restclient.js?v=1.2.10"></script>
+  <script src="js/krtoken.js?v=1.2.10"></script>
+  <script type="text/javascript">
+    //var supercop = supercop_wasm;
+
+
+
+    /*
+    $(document).ready(function() {
+
+      supercop.ready(function () {
+        $('#open-button').removeAttr("disabled","");
+
+        var seed = supercop.createSeed()
+        var keys = supercop.createKeyPair(seed)
+        var msg = (new TextEncoder("utf-8")).encode("hello there")
+        var sig = supercop.sign(msg, keys.publicKey, keys.secretKey)
+        console.log(supercop.verify(sig, msg, keys.publicKey)) // true
+      });
+
+
+    });
+    */
+  </script>
+</body>
+
+</html>
+
+<!--
+
+  https://github.com/tonyg/js-scrypt
+  http://cryptocoinjs.com/modules/crypto/ecurve/
+-->

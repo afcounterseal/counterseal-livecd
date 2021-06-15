@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Ai-Fi Counterseal for Desktop</title>
+        <style>
+            #box {
+                width: 300px;
+                height: 300px;
+                background: #ddd;
+                position: relative;
+            }
+            #child {
+                width: 150px;
+                height: 100px;
+                background: orange;
+                position: absolute;
+                top: 50%;
+                margin: -50px 0 0 0; 
+            }
+
+            .confirm-tx-win {
+                position: fixed;
+                width: 550px;
+                min-height: 400px;
+                max-height: 400px;
+                height: 400px;
+                overflow:hidden;
+                top: calc(50% - 200px);
+                left: calc(50% - 275px);
+                /* background-color: #f00; */
+                background-color: #fff;
+            }
+            .confirm-tx-win-header {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: calc(100% - 2px);
+                height: 44px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border: 1px solid #ccc;
+                background-color: #00aaff;
+                line-height: 44px;
+                text-align: center;
+                color: #fff;
+                font-weight: bold;
+            }
+            .confirm-tx-win-content {
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: calc(100% - 2px);
+                top: 46px;
+                bottom: 46px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                border-left: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+            }
+            .confirm-tx-win-footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: calc(100% - 2px);
+                height: 44px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                border: 1px solid #ccc;
+                background-color: #eee;
+            }
+            .tx-div {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 10px;
+                box-sizing:border-box;
+                width: 100%;
+            }
+            .tx-table {
+                font-size: 12px;
+                color:dimgrey;
+                width:100%;
+                border-collapse:collapse;
+            }
+            .tx-table td, .tx-table th {
+                border:1px solid #eee;
+                padding:3px 7px 2px 7px;
+                text-align: left;
+            }
+            .btn {
+                border: none;
+                background-color: #00aaff;
+                height: 30px;
+                margin-top: 7px;
+                margin-right: 20px;
+                box-sizing:border-box;
+                padding-left: 15px;
+                padding-right: 15px;
+                cursor: pointer;
+            }
+            .cancel-btn {
+                color: dimgrey;
+                background-color: #ccc;
+            }
+            .cancel-btn:hover {
+                color: #fff;
+                background-color: dimgrey;
+
+            }
+
+            .confirm-btn {
+                color: #fff;
+            }
+            .confirm-btn:hover {
+                background-color: #0088dd;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div id="confirm-tx-win" class="confirm-tx-win">
+        <div class="confirm-tx-win-header">
+            An Unsigned Transaction Need to Be Signed
+        </div>
+        <div class="confirm-tx-win-content">
+            <div class="tx-div">
+                <table id="tx-table" class="tx-table">
+                    <tr>
+                        <th colspan="2">TX</th>
+                    </tr>
+                    <tr>
+                        <td>HASH</td>
+                        <td>710c0ad912aa534986b5cdba00562dfab3a32bf35f979884b0d79e1f8f9868b5</td>
+                    </tr>
+                    <tr>
+                        <td>Fee</td>
+                        <td>164 satoshi</td>
+                    </tr>
+                    <tr>
+                        <td>Memo</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Input(s)</th>
+                    </tr>
+                    <tr>
+                        <td>Input0</td>
+                        <td>0.04999336 BTC<br />2N59rBQQ5mdMB49RJdLbBMX2gCCNXHuhd24</td>
+                    </tr>
+
+                    <tr>
+                        <th colspan="2">Output(s)</th>
+                    </tr>
+                    <tr>
+                        <td>Output0</td>
+                        <td>0.03999172 BTC<br />tb1q40jg52gpwsmyqaghetsmj2s3jmqyq33v8j75md</td>
+                    </tr>
+                    <tr>
+                        <td>Output1</td>
+                        <td>0.01000000 BTC<br />tb1q9ufzt4psvv0z5p8g9y052wfu94urq86dst9l4v</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="confirm-tx-win-footer">
+            <div style="float:right;">
+                <button class="btn cancel-btn">Cancel</button><button class="btn confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+        <div id="box">
+            <div id="child"></div>
+        </div>
+    </body>
+</html>

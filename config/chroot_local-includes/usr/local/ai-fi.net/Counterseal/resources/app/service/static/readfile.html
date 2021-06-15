@@ -1,0 +1,32 @@
+<html>
+    <head>
+</head>
+<body>
+    <input type="file" id="file" />
+    <input type="button" onclick="" value="open" />
+
+    <div id="filecontent"></div>
+
+<script type="text/javascript">
+    function readSingleFile(e) {
+        var file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            displayContents(contents);
+        };
+        reader.readAsText(file);
+    }
+
+    function displayContents(contents) {
+        var element = document.getElementById('filecontent');
+        element.innerHTML = contents;
+    }
+    document.getElementById('file')
+  .addEventListener('change', readSingleFile, false);
+</script>
+</body>
+</html>

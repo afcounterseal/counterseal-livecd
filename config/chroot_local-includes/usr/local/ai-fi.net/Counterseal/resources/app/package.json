@@ -1,0 +1,22 @@
+{
+  "name": "Counterseal",
+  "version": "1.0.0",
+  "description": "A Threshold Schema Signature Signer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/ai-fi/Counterseal.git",
+  "keywords": [
+    "Counterseal",
+    "Ai-Fi",
+    "Cryptocurrency",
+    "Wallet",
+    "Bitcoin"
+  ],
+  "author": "Ai-Fi.net",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  }
+}

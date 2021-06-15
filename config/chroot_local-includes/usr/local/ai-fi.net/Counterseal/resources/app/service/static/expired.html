@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Expired Ai-Fi Counterseal Screen</title>
+        <style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.mask-layer {
+				position: fixed;
+				z-index: 1999;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				background-color: #000000;
+				filter:alpha(Opacity=50);
+				-moz-opacity:0.5;
+				opacity: 0.5;
+			}
+			
+
+            .confirm-tx-win {
+                position: fixed;
+				z-index: 2000;
+                width: 550px;
+                min-height: 260px;
+                max-height: 260px;
+                height: 260px;
+                overflow:hidden;
+                top: calc(50% - 130px);
+                left: calc(50% - 275px);
+                /* background-color: #f00; */
+            }
+            .confirm-tx-win-header {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: calc(100% - 2px);
+                height: 44px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border: 1px solid #ccc;
+                background-color: orange;
+                line-height: 44px;
+                text-align: center;
+                color: #fff;
+                font-weight: bold;
+            }
+            .confirm-tx-win-content {
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: calc(100% - 2px);
+                top: 46px;
+                bottom: 46px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                border-left: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+                background-color: #fff;
+            }
+            .confirm-tx-win-footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: calc(100% - 2px);
+                height: 44px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                border: 1px solid #ccc;
+                background-color: #eee;
+            }
+            .tx-div {
+                padding-top: 10px;
+                padding-right: 10px;
+                padding-left: 10px;
+                padding-bottom: 10px;
+                box-sizing:border-box;
+                width: 100%;
+            }
+            .tx-table {
+                font-size: 12px;
+                color:dimgrey;
+                width:100%;
+                border-collapse:collapse;
+            }
+            .tx-table td, .tx-table th {
+                border:1px solid #eee;
+                padding:3px 7px 2px 7px;
+                text-align: left;
+            }
+            .btn {
+                border: none;
+                background-color: #00aaff;
+                height: 30px;
+                margin-top: 7px;
+                margin-right: 20px;
+                box-sizing:border-box;
+                padding-left: 15px;
+                padding-right: 15px;
+                cursor: pointer;
+            }
+            .cancel-btn {
+                color: dimgrey;
+                background-color: #ccc;
+            }
+            .cancel-btn:hover {
+                color: #fff;
+                background-color: dimgrey;
+
+            }
+
+            .confirm-btn {
+                color: #fff;
+            }
+            .confirm-btn:hover {
+                background-color: #0088dd;
+            }
+        </style>
+    </head>
+    <body>
+	<div class="mask-layer"></div>
+    <div id="confirm-tx-win" class="confirm-tx-win">
+        <div class="confirm-tx-win-header">
+            This Counterseal screen has expired
+        </div>
+        <div class="confirm-tx-win-content">
+            <div class="tx-div">
+				<div style="margin: 40px 10px 40px 10px; padding: 0;">
+                Please close this browser tab and locate the latest one under a different tab or open a new one from the Counterseal application in the system tray.
+				</div>
+            </div>
+        </div>
+        <div class="confirm-tx-win-footer">
+            <div style="float:right;">
+                <!--<button class="btn cancel-btn" onclick="window.close();">Close</button>-->
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
