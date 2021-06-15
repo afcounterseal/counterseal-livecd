@@ -264,4 +264,4 @@ intltool_update_po $(po_languages)
 refresh_mo $(po_languages)
 intltool_merge_desktop
 intltool_merge_xml
-chmod +x config/chroot_local-includes/etc/skel/Desktop/*.desktop
+#chmod +x config/chroot_local-includes/etc/skel/Desktop/*.desktop
