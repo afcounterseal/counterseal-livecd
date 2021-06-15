@@ -6,7 +6,7 @@ mv counterseal-electron-tmp/Counterseal/* config/chroot_local-includes/usr/local
 sudo chmod 4755 config/chroot_local-includes/usr/local/ai-fi.net/Counterseal/Counterseal
 rm -rf Counterseal.zip counterseal-electron-tmp
 
-git add config/
+git add config/chroot_local-includes/usr/local/ai-fi.net/Counterseal/
 git commit -m "Update Counterseal" .
 
 
